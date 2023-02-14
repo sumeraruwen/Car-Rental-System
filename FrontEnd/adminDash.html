@@ -2,9 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<main>
 
+    <!--<nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Offcanvas navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>-->
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">DashBoard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Easy Car Rental</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <br><br>
+    <!--dashboard content-->
+    <main class="container-fluid " id="dashboardContent">
+        <div class="jumbotron pt-md-5">
+            <div id="home-tiles">
+                <div class="row ">
+                    <div class="col-lg-6 col-xl-3 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-danger font-weight-bolder">Customers</div>
+                            <div class="card-body">
+                                <div class="dash-tile-icon"><i class="fas fa-users"></i></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>93</h2></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-danger font-weight-bolder">Cars</div>
+                            <div class="card-body">
+                                <div class="dash-tile-icon"><i class="fas fa-cubes"></i></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>101</h2></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-danger font-weight-bolder">Rentals</div>
+                            <div class="card-body">
+                                <div class="dash-tile-icon"><i class="fas fa-shopping-cart"></i></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>999</h2></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3 mb-2">
+                        <div class="card">
+                            <div class="card-header bg-danger font-weight-bolder">Drivers</div>
+                            <div class="card-body">
+                                <div class="dash-tile-icon" style=""><i class="fas fa-cogs"></i></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>56</h2></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</main>
+
+
+<script src="asserts/js/jquery-3.6.1.min.js"></script>
+<script src="asserts/js/bootstrap.min.js"></script>
 </body>
 </html>
