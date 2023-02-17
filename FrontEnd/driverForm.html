@@ -105,7 +105,7 @@
 
   </section>-->
 
-    <form class="row g-3">
+    <form class="row g-3" id="driverForm">
         <div class="row g-3">
             <div class="col">
                 <input type="text" class="form-control" placeholder="Driver ID" aria-label="Driver ID">
@@ -145,10 +145,12 @@
                 </label>
             </div>
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
+
     </form>
+
+    <div class="col-12">
+        <button type="button" class="btn btn-success" id="btnDriver">Save Driver</button>
+    </div>
     <br>
     <div class="col-12">
         <table class="table table-bordered table-hover">
@@ -176,6 +178,43 @@
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    //load all customers from the database
+   // getAllCustomers();
+
+
+    //Button Events
+    //Add Customer
+    $("#btnDriver").click(function () {
+        let formData = $("#driverForm").serialize();
+        $.ajax({
+            url: baseUrl+"driver",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+              //  getAllCustomers();
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });
+
+
+
+</script>
 </body>
 </html>
 
