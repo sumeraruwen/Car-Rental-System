@@ -108,32 +108,32 @@
     <form class="row g-3" id="driverForm">
         <div class="row g-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Driver ID" aria-label="Driver ID" name="dId">
+                <input type="text" id="txtDriverID" class="form-control" placeholder="Driver ID" aria-label="Driver ID" name="dId">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Driver Name" aria-label="Driver Name" name="dName">
+                <input type="text" id="txtDriverName" class="form-control" placeholder="Driver Name" aria-label="Driver Name" name="dName">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Address" aria-label="Address" name="dAddress">
-            </div>
-        </div>
-        <div class="row g-3">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Email" aria-label="Email" name="dEmail">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Contact" aria-label="Contact" name="dContact">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Age" aria-label="Age" name="dAge">
+                <input type="text" id="txtDriverAddress" class="form-control" placeholder="Address" aria-label="Address" name="dAddress">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Driving License No" aria-label="Driving License No" name="dDrivingL">
+                <input type="text" id="txtDriverEmail" class="form-control" placeholder="Email" aria-label="Email" name="dEmail">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Status" aria-label="Status" name="dStatus">
+                <input type="text" id="txtDriverContact" class="form-control" placeholder="Contact" aria-label="Contact" name="dContact">
+            </div>
+            <div class="col">
+                <input type="text" id="txtDriverAge" class="form-control" placeholder="Age" aria-label="Age" name="dAge">
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <input type="text" id="txtDriverLicense" class="form-control" placeholder="Driving License No" aria-label="Driving License No" name="dDrivingL">
+            </div>
+            <div class="col">
+                <input type="text" id="txtDriverStatus" class="form-control" placeholder="Status" aria-label="Status" name="dStatus">
             </div>
         </div>
 
@@ -189,7 +189,7 @@
 
 
     //Button Events
-    //Add Customer
+    //Add Driver
     $("#btnDriver").click(function () {
         let formData = $("#driverForm").serialize();
         $.ajax({
@@ -215,7 +215,69 @@
 
     });
 
-    //Get all Customer Function
+
+    //Delete Driver
+    $("#btnDriDelete").click(function () {
+        let dId = $("#txtDriverID").val();
+        $.ajax({
+            url: baseUrl+"driver?dId=" + dId,
+            method: "delete",
+            success: function (resp) {
+                getAllCustomers();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Update Driver
+    $("#btnDriUpdate").click(function () {
+        let driId = $("#txtDriverID").val();
+        let driName = $("#txtDriverName").val();
+        let driAddress = $("#txtDriverAddress").val();
+        let driEmail = $("#txtDriverEmail").val();
+        let driContact = $("#txtDriverContact").val();
+        let driAge = $("#txtDriverAge").val();
+        let driLicense = $("#txtDriverLicense").val();
+        let driStatus = $("#txtDriverStatus").val();
+
+        var driverOb = {
+            dId: driId,
+            dName: driName,
+            dAddress: driAddress,
+            dEmail: driEmail,
+            dContact: driContact,
+            dAge: driAge,
+            dLicense: driLicense,
+            dStatus: driStatus
+        }
+        $.ajax({
+            url: baseUrl+"driver",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(driverOb),
+            dataType: "json",
+            success: function (resp) {
+                getAllCustomers();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Get All Driver
+    $("#btnDriGetAll").click(function () {
+        getAllCustomers();
+    });
+
+
+    //Get all Driver Function
     function getAllCustomers() {
         $("#tblDriver").empty();
         $.ajax({
@@ -234,14 +296,54 @@
                     let row = "<tr><td>" + DID + "</td><td>" + DName + "</td><td>" + DAddress + "</td><td>" + DEmail + "</td><td>" + DContact + "</td><td>" + DAge + "</td><td>" + DDrivingL + "</td><td>" + DStatus + "</td></tr>";
                     $("#tblDriver").append(row);
                 }
-               // bindRowClickEvents();
-               // setTextFieldValues("", "", "", "");
+                bindRowClickEvents();
+                setTextFieldValues("", "", "", "","", "", "", "");
             },
             error: function (error) {
                 let message = JSON.parse(error.responseText).message;
                 alert(message);
             }
         });
+    }
+
+
+    //Bind events for the table rows function
+    function bindRowClickEvents() {
+        $("#tblDriver>tr").click(function () {
+            let dId = $(this).children(":eq(0)").text();
+            let dName = $(this).children(":eq(1)").text();
+            let dAddress = $(this).children(":eq(2)").text();
+            let dEmail = $(this).children(":eq(3)").text();
+            let dContact = $(this).children(":eq(4)").text();
+            let dAge = $(this).children(":eq(5)").text();
+            let dDrivingL = $(this).children(":eq(6)").text();
+            let dStatus = $(this).children(":eq(7)").text();
+            // console.log(id, name, address, salary);
+
+            //setting table details values to text fields
+
+             $("#txtDriverID").val(dId);
+             $("#txtDriverName").val(dName);
+             $("#txtDriverAddress").val(dAddress);
+             $("#txtDriverEmail").val(dEmail);
+             $("#txtDriverContact").val(dContact);
+             $("#txtDriverAge").val(dAge);
+             $("#txtDriverLicense").val(dDrivingL);
+             $("#txtDriverStatus").val(dStatus);
+
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(dId, dName, dAddress, dEmail,dContact,dAge,dDrivingL,dStatus) {
+        $("#txtDriverID").val(dId);
+        $("#txtDriverName").val(dName);
+        $("#txtDriverAddress").val(dAddress);
+        $("#txtDriverEmail").val(dEmail);
+        $("#txtDriverContact").val(dContact);
+        $("#txtDriverAge").val(dAge);
+        $("#txtDriverLicense").val(dDrivingL);
+        $("#txtDriverStatus").val(dStatus);
     }
 
 
