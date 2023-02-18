@@ -1,17 +1,17 @@
 package lk.ijse.spring.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.ijse.spring.dto.DriverDTO;
+import lk.ijse.spring.util.ResponseUtil;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/driver")
 public class DriverController {
 
-    @GetMapping
-    public void getDrivers(){
-        System.out.println("get driver");
+    @PostMapping
+    public ResponseUtil saveDrivers(DriverDTO dto){
+        System.out.println(dto.toString());
+        return new ResponseUtil("ok","Successsfully saved",null);
     }
 }

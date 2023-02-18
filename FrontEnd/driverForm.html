@@ -10,7 +10,7 @@
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">ADMIN PANEL</a>
+        <a class="navbar-brand" href="#">Driver PANEL</a>
         <button class="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -108,32 +108,32 @@
     <form class="row g-3" id="driverForm">
         <div class="row g-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Driver ID" aria-label="Driver ID">
+                <input type="text" class="form-control" placeholder="Driver ID" aria-label="Driver ID" name="dId">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Driver Name" aria-label="Driver Name">
+                <input type="text" class="form-control" placeholder="Driver Name" aria-label="Driver Name" name="dName">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Address" aria-label="Address">
-            </div>
-        </div>
-        <div class="row g-3">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Email" aria-label="Email">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Contact" aria-label="Contact">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Age" aria-label="Age">
+                <input type="text" class="form-control" placeholder="Address" aria-label="Address" name="dAddress">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Driving License No" aria-label="Driving License No">
+                <input type="text" class="form-control" placeholder="Email" aria-label="Email" name="dEmail">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Status" aria-label="Status">
+                <input type="text" class="form-control" placeholder="Contact" aria-label="Contact" name="dContact">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Age" aria-label="Age" name="dAge">
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Driving License No" aria-label="Driving License No" name="dDrivingL">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Status" aria-label="Status" name="dStatus">
             </div>
         </div>
 
@@ -150,6 +150,9 @@
 
     <div class="col-12">
         <button type="button" class="btn btn-success" id="btnDriver">Save Driver</button>
+        <button class="btn btn-danger" type="button" id="btnDriDelete">Remove Driver</button>
+        <button class="btn btn-warning" type="button" id="btnDriUpdate">Update Driver</button>
+        <button class="btn btn-success" type="button" id="btnDriGetAll">Get All Driver</button>
     </div>
     <br>
     <div class="col-12">
@@ -182,7 +185,7 @@
 
     let baseUrl="http://localhost:8080/BackEnd_war/";
     //load all customers from the database
-   // getAllCustomers();
+    getAllCustomers();
 
 
     //Button Events
@@ -199,7 +202,7 @@
                 console.log("Success Method Invoked")
                 console.log(res);
                 alert(res.message);
-              //  getAllCustomers();
+                getAllCustomers();
             },
             error: function (error) {
                 // invokes if status code range is 500 range or 400 range
@@ -211,6 +214,35 @@
         });
 
     });
+
+    //Get all Customer Function
+    function getAllCustomers() {
+        $("#tblDriver").empty();
+        $.ajax({
+            url: baseUrl+"driver",
+            success: function (res) {
+                for (let d of res.data) {
+                    let DID = d.dId;
+                    let DName = d.dName;
+                    let DAddress = d.dAddress;
+                    let DEmail = d.dEmail;
+                    let DContact = d.dContact;
+                    let DAge= d.dAge;
+                    let DDrivingL= d.dDrivingL;
+                    let DStatus= d.dStatus;
+
+                    let row = "<tr><td>" + DID + "</td><td>" + DName + "</td><td>" + DAddress + "</td><td>" + DEmail + "</td><td>" + DContact + "</td><td>" + DAge + "</td><td>" + DDrivingL + "</td><td>" + DStatus + "</td></tr>";
+                    $("#tblDriver").append(row);
+                }
+               // bindRowClickEvents();
+               // setTextFieldValues("", "", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
 
 
 
