@@ -1,7 +1,10 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.DriverDTO;
+import lk.ijse.spring.entity.Driver;
+import lk.ijse.spring.repo.DriverRepo;
 import lk.ijse.spring.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,9 +14,15 @@ import java.util.ArrayList;
 @RequestMapping("/driver")
 public class DriverController {
 
+    @Autowired
+    private DriverRepo repo;
+
     @PostMapping
     public ResponseUtil saveDrivers(@ModelAttribute DriverDTO dto){
         System.out.println(dto.toString());
+
+        Driver driver = new Driver(dto.getdId(), dto.getdName(), dto.getdAddress(), dto.getdEmail(), dto.getdContact(),dto.getdAge(),dto.getdDrivingL() , dto.getdStatus());
+        repo.save(driver);
         return new ResponseUtil("ok","Successsfully saved",null);
     }
 
