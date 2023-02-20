@@ -23,13 +23,17 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {DriverRepo.class})
+@PropertySource("classpath:application.properties")
 public class JPAConfig {
+
+    @Autowired
+    private Environment env;
 
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter va){
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setPackagesToScan("lk.ijse.spring.entity");
+        factoryBean.setPackagesToScan(env.getRequiredProperty("pro.entity"));
         factoryBean.setDataSource(ds);
         factoryBean.setJpaVendorAdapter(va);
         return factoryBean;
@@ -38,10 +42,10 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/easycar?createDatabaseIfNotExist=true");
-        ds.setUsername("root");
-        ds.setPassword("1234");
+        ds.setDriverClassName(env.getRequiredProperty("pro.driver"));
+        ds.setUrl(env.getRequiredProperty("pro.url"));
+        ds.setUsername(env.getRequiredProperty("pro.username"));
+        ds.setPassword(env.getRequiredProperty("pro.password"));
         return ds;
 
     }
@@ -49,7 +53,7 @@ public class JPAConfig {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-        va.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        va.setDatabasePlatform(env.getRequiredProperty("pro.dial"));
         va.setDatabase(Database.MYSQL);
         va.setGenerateDdl(true);
         va.setShowSql(true);
