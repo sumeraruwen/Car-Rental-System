@@ -76,12 +76,13 @@ public class DriverController {
     @GetMapping
     public ResponseUtil getAllDriver(){
 
-        //List<Driver> all = repo.findAll();
-/*
-      ArrayList<DriverDTO> allList =  mapper.map(repo.findAll(),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
-*/
-
-
         return new ResponseUtil("ok","scuccess loaded",service.getAllDrivers());
     }
+
+
+   /* @GetMapping(path = "/{name}")
+    public ResponseUtil searchDriverByName(@PathVariable String name){
+
+        return new ResponseUtil("ok","scuccess loaded",service.searchDriverWithName(name));
+    }*/
 }
