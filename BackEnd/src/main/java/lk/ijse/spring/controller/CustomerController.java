@@ -25,4 +25,10 @@ public class CustomerController {
         return new ResponseUtil("ok","Successsfully saved",null);
     }
 
+    @GetMapping
+    public ResponseUtil getAllCustomers(){
+
+        return new ResponseUtil("ok","scuccess loaded",service.getAllCustomers());
+    }
+
 }

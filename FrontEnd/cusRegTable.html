@@ -132,7 +132,7 @@
 
             </tr>
             </thead>
-            <tbody id="tblCstomer">
+            <tbody id="tblCustomer">
 
             </tbody>
         </table>
@@ -144,6 +144,53 @@
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    //load all customers from the database
+    getAllCustomers();
+
+    //Get all Customer Function
+    function getAllCustomers() {
+        $("#tblCustomer").empty();
+        $.ajax({
+            url: baseUrl+"customer",
+            success: function (res) {
+                for (let c of res.data) {
+                    let CID = c.cId;
+                    let CName = c.dName;
+                    let CEmail = c.cEmail;
+                    let CPassword = c.cPassword;
+                    let CAddress = c.dAddress;
+                    let CContact = c.dContact;
+
+
+                    let row = "<tr><td>" + CID + "</td><td>" + CName + "</td><td>" + CEmail + "</td><td>" + CPassword + "</td><td>" + CAddress + "</td><td>" + CContact + "</td></tr>";
+                    $("#tblCustomer").append(row);
+                }
+               // bindRowClickEvents();
+               // setTextFieldValues("", "", "", "","", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(cId, cName, cEmail,cPassword,cAddress, dContact) {
+        $("#txtCustomerID").val(cId);
+        $("#txtCustomerName").val(cName);
+        $("#txtCustomerEmail").val(cEmail);
+        $("#txtCustomerPassword").val(cPassword);
+        $("#txtCustomerAddress").val(cAddress);
+        $("#txtCustomerContact").val(dContact);
+
+    }
+
+</script>
 </body>
 </html>
 

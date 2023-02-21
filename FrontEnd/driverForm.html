@@ -185,7 +185,7 @@
 
     let baseUrl="http://localhost:8080/BackEnd_war/";
     //load all customers from the database
-    getAllCustomers();
+    getAllDrivers();
 
 
     //Button Events
@@ -202,7 +202,7 @@
                 console.log("Success Method Invoked")
                 console.log(res);
                 alert(res.message);
-                getAllCustomers();
+                getAllDrivers();
             },
             error: function (error) {
                 // invokes if status code range is 500 range or 400 range
@@ -223,7 +223,7 @@
             url: baseUrl+"driver?dId=" + dId,
             method: "delete",
             success: function (resp) {
-                getAllCustomers();
+                getAllDrivers();
                 alert(resp.message);
             },
             error: function (error) {
@@ -261,7 +261,7 @@
             data: JSON.stringify(driverOb),
             dataType: "json",
             success: function (resp) {
-                getAllCustomers();
+                getAllDrivers();
                 alert(resp.message);
             },
             error: function (error) {
@@ -273,12 +273,12 @@
 
     //Get All Driver
     $("#btnDriGetAll").click(function () {
-        getAllCustomers();
+        getAllDrivers();
     });
 
 
     //Get all Driver Function
-    function getAllCustomers() {
+    function getAllDrivers() {
         $("#tblDriver").empty();
         $.ajax({
             url: baseUrl+"driver",
