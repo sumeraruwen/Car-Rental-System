@@ -46,32 +46,32 @@
       <form id="customerForm">
         <div class="form-group">
           <label for="txtCustomerID">Customer ID</label>
-          <input class="form-control" id="txtCustomerID" type="text" name="id">
+          <input class="form-control" id="txtCustomerID" type="text" name="cId">
           <span class="control-error" id="lblcusid"></span>
         </div>
         <div class="form-group">
           <label for="txtCustomerName">Customer Name</label>
-          <input class="form-control" id="txtCustomerName" type="text" name="name">
+          <input class="form-control" id="txtCustomerName" type="text" name="cName">
           <span class="control-error" id="lblcusname"></span>
         </div>
         <div class="form-group">
           <label for="txtCustomerEmail">Customer Email</label>
-          <input class="form-control" id="txtCustomerEmail" type="text" name="email">
+          <input class="form-control" id="txtCustomerEmail" type="text" name="cEmail">
           <span class="control-error" id="lblcusemail"></span>
         </div>
         <div class="form-group">
           <label for="txtCustomerPassword">Customer Password</label>
-          <input class="form-control" id="txtCustomerPassword" type="password" name="password">
+          <input class="form-control" id="txtCustomerPassword" type="password" name="cPassword">
           <span class="control-error" id="lblcuspassword"></span>
         </div>
         <div class="form-group">
           <label for="txtCustomerAddress">Customer Address</label>
-          <input class="form-control" id="txtCustomerAddress" type="text" name="address">
+          <input class="form-control" id="txtCustomerAddress" type="text" name="cAddress">
           <span class="control-error" id="lblcusaddress"></span>
         </div>
         <div class="form-group">
           <label for="txtCustomerContact">Customer Contact</label>
-          <input class="form-control" id="txtCustomerContact" type="text" name="contact">
+          <input class="form-control" id="txtCustomerContact" type="text" name="cContact">
           <span class="control-error" id="lblcuscontact"></span>
         </div>
       </form>
@@ -89,6 +89,41 @@
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+
+<script>
+
+  let baseUrl="http://localhost:8080/BackEnd_war/";
+
+  //Button Events
+  //Add Driver
+  $("#btnCustomer").click(function () {
+    let formData = $("#customerForm").serialize();
+    $.ajax({
+      url: baseUrl+"customer",
+      method: "post",
+      data: formData,
+      dataType: "json",
+      success: function (res) {
+        // invoked if the response status code is in 200 range
+        console.log("Success Method Invoked")
+        console.log(res);
+        alert(res.message);
+        //getAllCustomers();
+      },
+      error: function (error) {
+        // invokes if status code range is 500 range or 400 range
+        console.log("Error Method Invoked");
+        console.log(JSON.parse(error.responseText));
+        alert(JSON.parse(error.responseText).message);
+
+      }
+    });
+
+  });
+
+
+</script>
+
 </body>
 </html>
 
