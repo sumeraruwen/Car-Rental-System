@@ -19,7 +19,6 @@ public class CustomerController {
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
 
-
         service.saveCustomer(dto);
 
         return new ResponseUtil("ok","Successsfully saved",null);

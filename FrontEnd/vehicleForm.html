@@ -151,36 +151,39 @@
             <div class="col">
                 <input type="text" class="form-control" placeholder="Status" aria-label="Status">
             </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Number" aria-label="Number">
+            </div>
+
         </div>
 
-        <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-            </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
     </form>
+    <br>
+
+    <div class="col-12">
+        <button type="button" class="btn btn-success" id="btnVehicle">Save Vehicle</button>
+        <button class="btn btn-danger" type="button" id="btnVDelete">Remove Vehicle</button>
+        <button class="btn btn-warning" type="button" id="btnVUpdate">Update Vehicle</button>
+        <button class="btn btn-success" type="button" id="btnVGetAll">Get All Vehicle</button>
+    </div>
+
     <br>
     <div class="col-12">
         <table class="table table-bordered table-hover">
             <thead class="bg-primary text-white">
             <tr>
-                <th>DID</th>
-                <th>DName</th>
-                <th>DAddress</th>
-                <th>DEmail</th>
-                <th>DContact</th>
-                <th>DAge</th>
-                <th>DLicense</th>
+                <th>VID</th>
+                <th>VBrand</th>
+                <th>VType</th>
+                <th>VSeats</th>
+                <th>VFuelType</th>
+                <th>VRates</th>
+                <th>VImage</th>
                 <th>Status</th>
+                <th>VNumber</th>
             </tr>
             </thead>
-            <tbody id="tblDriver">
+            <tbody id="tblVehicle">
 
             </tbody>
         </table>
