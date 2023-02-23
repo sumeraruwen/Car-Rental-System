@@ -48,7 +48,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void updateVehicle(VehicleDTO dto) {
         if(!repo.existsById(dto.getVId())){
-            throw new RuntimeException("Driver Already Exists");
+            throw new RuntimeException("Vehicle Already Exists");
         }
 
         Vehicle map = mapper.map(dto, Vehicle.class);
