@@ -159,11 +159,11 @@
             success: function (res) {
                 for (let c of res.data) {
                     let CID = c.cId;
-                    let CName = c.dName;
+                    let CName = c.cName;
                     let CEmail = c.cEmail;
                     let CPassword = c.cPassword;
-                    let CAddress = c.dAddress;
-                    let CContact = c.dContact;
+                    let CAddress = c.cAddress;
+                    let CContact = c.cContact;
 
 
                     let row = "<tr><td>" + CID + "</td><td>" + CName + "</td><td>" + CEmail + "</td><td>" + CPassword + "</td><td>" + CAddress + "</td><td>" + CContact + "</td></tr>";

@@ -27,7 +27,7 @@ public class NewAdminServiceImpl implements NewAdminService {
     @Override
     public void saveAdmin(NewAdminDTO dto) {
 
-        if(repo.existsById(dto.getAId())){
+        if(repo.existsById(dto.getaId())){
             throw new RuntimeException("Admin Already Exists");
         }
 
@@ -47,7 +47,7 @@ public class NewAdminServiceImpl implements NewAdminService {
 
     @Override
     public void updateAdmin(NewAdminDTO dto) {
-        if(!repo.existsById(dto.getAId())){
+        if(!repo.existsById(dto.getaId())){
             throw new RuntimeException("Driver Already Exists");
         }
 
