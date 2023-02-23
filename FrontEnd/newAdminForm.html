@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Admin Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">New Admin PANEL</a>
+        <button class="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Easy Car Rental</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">DashBoard</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Vehicles</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="driverForm.html">Drivers</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Customers</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br><br><br>
+
+
+<main class="container-fluid" id="newAdminContent">
+
+
+    <form class="row g-3" id="newAdminForm">
+        <div class="row g-3">
+            <div class="col">
+                <input type="text" id="txtAdminID" class="form-control" placeholder="Admin ID" aria-label="Admin ID" name="aId">
+            </div>
+            <div class="col">
+                <input type="text" id="txtAdminName" class="form-control" placeholder="Admin Name" aria-label="Admin Name" name="aName">
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <input type="text" id="txtAdminEmail" class="form-control" placeholder="Admin Email" aria-label="Admin Email" name="aEmail">
+            </div>
+            <div class="col">
+                <input type="password" id="txtAdminPassword" class="form-control" placeholder="Admin Password" aria-label="Admin Password" name="aPassword">
+            </div>
+        </div>
+
+    </form>
+    <br>
+
+    <div class="col-12">
+        <button type="button" class="btn btn-success" id="btnAdmin">Save Admin</button>
+        <button class="btn btn-danger" type="button" id="btnAdDelete">Remove Admin</button>
+        <button class="btn btn-warning" type="button" id="btnAdUpdate">Update Admin</button>
+        <button class="btn btn-success" type="button" id="btnAdGetAll">Get All Admin</button>
+    </div>
+    <br>
+    <div class="col-12">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+            <tr>
+                <th>AID</th>
+                <th>AName</th>
+                <th>AEmail</th>
+                <th>APassword</th>
+            </tr>
+            </thead>
+            <tbody id="tblNewAdmin">
+
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+
+
+<script src="asserts/js/jquery-3.6.1.min.js"></script>
+<script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    //load all Admins from the database
+
+
+
+    //Button Events
+    //Add Admins
+    $("#btnAdmin").click(function () {
+        let formData = $("#newAdminForm").serialize();
+        $.ajax({
+            url: baseUrl+"newAdmin",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+                getAllNewAdmins();
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });
+
+
+    //Delete Admins
+    $("#btnAdDelete").click(function () {
+        let aId = $("#txtAdminID").val();
+        $.ajax({
+            url: baseUrl+"newAdmin?aId=" + aId,
+            method: "delete",
+            success: function (resp) {
+                getAllNewAdmins();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Update Admins
+    $("#btnAdUpdate").click(function () {
+        let adId = $("#txtAdminID").val();
+        let adName = $("#txtAdminName").val();
+        let adEmail = $("#txtAdminEmail").val();
+        let adPassword = $("#txtAdminPassword").val();
+
+
+        var newAdminOb = {
+            aId: adId,
+            aName: adName,
+            aEmail: adEmail,
+            aContact: adPassword,
+
+        }
+        $.ajax({
+            url: baseUrl+"newAdmin",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(newAdminOb),
+            dataType: "json",
+            success: function (resp) {
+                getAllNewAdmins();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Get All Admins
+    $("#btnAdGetAll").click(function () {
+        getAllNewAdmins();
+    });
+
+
+    //Get all Admins Function
+    function getAllNewAdmins() {
+        $("#tblNewAdmin").empty();
+        $.ajax({
+            url: baseUrl+"newAdmin",
+            success: function (res) {
+                for (let a of res.data) {
+                    let AID = a.aId;
+                    let AName = a.aName;
+                    let AEmail = a.aEmail;
+                    let APassword = a.aPassword;
+
+                    let row = "<tr><td>" + AID + "</td><td>" + AName + "</td><td>" + AEmail + "</td><td>" + APassword + "</td></tr>";
+                    $("#tblNewAdmin").append(row);
+                }
+                bindRowClickEvents();
+                setTextFieldValues("", "", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+
+    //Bind events for the table rows function
+    function bindRowClickEvents() {
+        $("#tblNewAdmin>tr").click(function () {
+            let aId = $(this).children(":eq(0)").text();
+            let aName = $(this).children(":eq(1)").text();
+            let aEmail = $(this).children(":eq(2)").text();
+            let aPassword = $(this).children(":eq(3)").text();
+
+
+            //setting table details values to text fields
+
+             $("#txtAdminID").val(aId);
+             $("#txtAdminName").val(aName);
+             $("#txtAdminEmail").val(aEmail);
+             $("#txtAdminPassword").val(aPassword);
+
+
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(aId, aName, aEmail, aPassword) {
+        $("#txtAdminID").val(aId);
+        $("#txtAdminName").val(aName);
+        $("#txtAdminEmail").val(aEmail);
+        $("#txtAdminPassword").val(aPassword);
+
+    }
+
+
+
+</script>
+</body>
+</html>
+
