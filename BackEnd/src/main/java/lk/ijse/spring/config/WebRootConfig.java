@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(JPAConfig.class)
-@ComponentScan(basePackageClasses = {DriverServiceImpl.class, CustomerServiceImpl.class, NewAdminServiceImpl.class})
+@ComponentScan(basePackages = "lk.ijse.spring")
 public class WebRootConfig {
 
     @Bean
