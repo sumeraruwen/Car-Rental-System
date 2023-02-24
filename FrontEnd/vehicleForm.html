@@ -55,7 +55,7 @@
 <br><br><br>
 
 
-<main class="container-fluid" id="driverContent">
+<main class="container-fluid" id="VehicleContent">
   <!--<section class="row">
     <div class="col-4">
       <h1>Driver Registraion</h1>
@@ -105,13 +105,13 @@
 
   </section>-->
 
-    <form class="row g-3">
+    <form class="row g-3" id="vehicleForm">
         <div class="row g-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Vehicle ID" aria-label="Vehicle ID">
+                <input type="text" id="txtVehicleID" class="form-control" placeholder="Vehicle ID" aria-label="Vehicle ID" name="vId">
             </div>
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="vBrand">
                     <option selected>Vehicle Brand</option>
                     <option value="1">Toyota</option>
                     <option value="2">Honda</option>
@@ -119,12 +119,12 @@
                 </select>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Type" aria-label="Type">
+                <input type="text" class="form-control" placeholder="Type" aria-label="Type" name="vType">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="vSeat">
                     <option selected>Seats</option>
                     <option value="1">4</option>
                     <option value="2">6</option>
@@ -134,25 +134,25 @@
                 </select>
             </div>
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="vFuel">
                     <option selected>Fuel Type</option>
                     <option value="1">Petrol</option>
                     <option value="2">Diesel</option>
                 </select>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Rates" aria-label="Rates">
+                <input type="text" class="form-control" placeholder="Rates" aria-label="Rates" name="vRates">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input class="form-control" type="file" id="formFileMultiple" multiple name="vFile">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Status" aria-label="Status">
+                <input type="text" class="form-control" placeholder="Status" aria-label="Status" name="vStatus">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Number" aria-label="Number">
+                <input type="text" class="form-control" placeholder="Number" aria-label="Number" name="vNumber">
             </div>
 
         </div>
@@ -195,6 +195,174 @@
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    //load all customers from the database
+    //getAllDrivers();
+
+
+    //Button Events
+    //Add Driver
+    $("#btnVehicle").click(function () {
+        let formData = $("#vehicleForm").serialize();
+        $.ajax({
+            url: baseUrl+"vehicle",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+                getAllDrivers();
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });
+
+
+    //Delete Driver
+    $("#btnVDelete").click(function () {
+        let vId = $("#txtVehicleID").val();
+        $.ajax({
+            url: baseUrl+"vehicle?vId=" + vId,
+            method: "delete",
+            success: function (resp) {
+               // getAllDrivers();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Update Driver
+   /* $("#btnDriUpdate").click(function () {
+        let driId = $("#txtDriverID").val();
+        let driName = $("#txtDriverName").val();
+        let driAddress = $("#txtDriverAddress").val();
+        let driEmail = $("#txtDriverEmail").val();
+        let driContact = $("#txtDriverContact").val();
+        let driAge = $("#txtDriverAge").val();
+        let driLicense = $("#txtDriverLicense").val();
+        let driStatus = $("#txtDriverStatus").val();
+
+        var driverOb = {
+            dId: driId,
+            dName: driName,
+            dAddress: driAddress,
+            dEmail: driEmail,
+            dContact: driContact,
+            dAge: driAge,
+            dLicense: driLicense,
+            dStatus: driStatus
+        }
+        $.ajax({
+            url: baseUrl+"vehicle",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(driverOb),
+            dataType: "json",
+            success: function (resp) {
+                getAllDrivers();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Get All Driver
+    $("#btnDriGetAll").click(function () {
+        getAllDrivers();
+    });
+
+
+    //Get all Driver Function
+    function getAllDrivers() {
+        $("#tblDriver").empty();
+        $.ajax({
+            url: baseUrl+"vehicle",
+            success: function (res) {
+                for (let d of res.data) {
+                    let DID = d.dId;
+                    let DName = d.dName;
+                    let DAddress = d.dAddress;
+                    let DEmail = d.dEmail;
+                    let DContact = d.dContact;
+                    let DAge= d.dAge;
+                    let DDrivingL= d.dDrivingL;
+                    let DStatus= d.dStatus;
+
+                    let row = "<tr><td>" + DID + "</td><td>" + DName + "</td><td>" + DAddress + "</td><td>" + DEmail + "</td><td>" + DContact + "</td><td>" + DAge + "</td><td>" + DDrivingL + "</td><td>" + DStatus + "</td></tr>";
+                    $("#tblDriver").append(row);
+                }
+                bindRowClickEvents();
+                setTextFieldValues("", "", "", "","", "", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+
+    //Bind events for the table rows function
+    function bindRowClickEvents() {
+        $("#tblDriver>tr").click(function () {
+            let dId = $(this).children(":eq(0)").text();
+            let dName = $(this).children(":eq(1)").text();
+            let dAddress = $(this).children(":eq(2)").text();
+            let dEmail = $(this).children(":eq(3)").text();
+            let dContact = $(this).children(":eq(4)").text();
+            let dAge = $(this).children(":eq(5)").text();
+            let dDrivingL = $(this).children(":eq(6)").text();
+            let dStatus = $(this).children(":eq(7)").text();
+            // console.log(id, name, address, salary);
+
+            //setting table details values to text fields
+
+            $("#txtDriverID").val(dId);
+            $("#txtDriverName").val(dName);
+            $("#txtDriverAddress").val(dAddress);
+            $("#txtDriverEmail").val(dEmail);
+            $("#txtDriverContact").val(dContact);
+            $("#txtDriverAge").val(dAge);
+            $("#txtDriverLicense").val(dDrivingL);
+            $("#txtDriverStatus").val(dStatus);
+
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(dId, dName, dAddress, dEmail,dContact,dAge,dDrivingL,dStatus) {
+        $("#txtDriverID").val(dId);
+        $("#txtDriverName").val(dName);
+        $("#txtDriverAddress").val(dAddress);
+        $("#txtDriverEmail").val(dEmail);
+        $("#txtDriverContact").val(dContact);
+        $("#txtDriverAge").val(dAge);
+        $("#txtDriverLicense").val(dDrivingL);
+        $("#txtDriverStatus").val(dStatus);
+    }
+*/
+
+
+</script>
 </body>
 </html>
 
