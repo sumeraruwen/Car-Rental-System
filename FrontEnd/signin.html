@@ -31,12 +31,14 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div>
-      <button type="button" class="btn btn-primary">Submit</button>
+
       <ul>
         <li><a class="ad" href="customerSignup.html">SignUp</a></li>
 
       </ul>
     </form>
+
+    <button class="btn btn-danger" type="button" id="btnLogIn">LogIn</button>
 
   </div>
 
@@ -67,5 +69,27 @@
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+  let baseUrl="http://localhost:8080/BackEnd_war/";
+
+
+ /* $("#btnLogIn").click(function () {
+    let aId = $("#txtAdminID").val();
+    $.ajax({
+      url: baseUrl+"newAdmin?aId=" + aId,
+      method: "get",
+      success: function (resp) {
+        alert(resp.message);
+      },
+      error: function (error) {
+        let message = JSON.parse(error.responseText).message;
+        alert(message);
+      }
+    });
+  });
+*/
+
+</script>
 </body>
 </html>

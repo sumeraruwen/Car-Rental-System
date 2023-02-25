@@ -59,4 +59,6 @@ public class NewAdminServiceImpl implements NewAdminService {
     public ArrayList<NewAdminDTO> getAllAdmin() {
         return mapper.map(repo.findAll(),new TypeToken<ArrayList<NewAdminDTO>>(){}.getType());
     }
+
+
 }

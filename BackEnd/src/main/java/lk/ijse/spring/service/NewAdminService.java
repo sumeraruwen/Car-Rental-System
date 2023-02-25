@@ -10,7 +10,9 @@ public interface NewAdminService {
     public void saveAdmin(NewAdminDTO dto);
     public void deleteAdmin(String aId);
     public void updateAdmin(NewAdminDTO dto);
+
     public ArrayList<NewAdminDTO> getAllAdmin();
+
 
 
 
