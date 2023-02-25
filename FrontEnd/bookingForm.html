@@ -125,7 +125,7 @@
         <!--main tile-->
         <div class="jumbotron pt-4">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header bg-primary font-weight-bolder">Invoice Details</div>
                         <div class="card-body">
@@ -149,37 +149,30 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label>Customer :</label>
-                                            <select class="form-control" id="selectCusID">
+                                            <label>Leaving Date :</label>
+                                            <input class="form-control" id="txtDate" type="date">
 
-                                            </select>
-                                            <span class="control-error"
-                                                  id="cus-empty-error"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="orderCustomerID">Customer ID</label>
-                                            <input class="form-control" id="orderCustomerID">
+                                            <label>Return Date :</label>
+                                            <input class="form-control" id="txtDate" type="date">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label>Name :</label>
+                                            <label>Cus Id :</label>
                                             <input class="form-control" id="orderCustomerName" type="text">
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Salary :</label>
-                                            <input class="form-control" id="orderCustomerSalary" type="text">
-                                        </div>
-                                    </div>
+
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label>Address :</label>
+                                            <label>Email :</label>
                                             <input class="form-control" id="orderCustomerAddress" type="text">
                                         </div>
                                     </div>
@@ -188,15 +181,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 mt-lg-0 mt-3">
+                <div class="col-lg-6 mt-lg-0 mt-3">
                     <div class="card">
-                        <div class="card-header bg-primary  font-weight-bolder">Item Select</div>
+                        <div class="card-header bg-primary  font-weight-bolder">Vehicle Select</div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label>Item :</label>
+                                            <label>VId :</label>
                                             <select class="form-control" id="selectItemCode"></select>
                                             <span class="control-error"
                                                   id="item-empty-error"></span>
@@ -204,37 +197,31 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label>Item Code :</label>
+                                            <label>VBrand :</label>
                                             <input class="form-control" id="txtItemCode" type="text">
                                         </div>
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <label>Item Name :</label>
+                                            <label>Rental Fee :</label>
                                             <input class="form-control" id="txtItemDescription" type="text">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label class="">Price :</label>
+                                            <label class="">Payement :</label>
                                             <input class="form-control" id="txtItemPrice" type="text">
                                         </div>
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <label class="">QtyOnH :</label>
+                                            <label class="">Status :</label>
                                             <input class="form-control" id="txtQTYOnHand" type="text">
                                         </div>
                                     </div>
                                     <hr>
                                     <hr>
-                                    <div class="col-12 mt-4">
-                                        <div class="form-group">
-                                            <label>Order Quantity :</label>
-                                            <input class="form-control" id="txtQty" min="1" type="number">
-                                            <span class="control-error" id="order-qty-empty-error"></span>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="form-group text-right">
                                     <button class="btn btn-danger col-12 col-sm-auto" id="btnAddToTable" type="button">
@@ -245,57 +232,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <section class="content-box-2 p-4 ">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="" id="total-text">Total : </span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span id="total">00.0</span> Rs/=
-                                    </div>
-                                </div>
 
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span id="total-text1">SubTotal : </span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span id="subtotal">00.0</span> Rs/=
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-6 mt-2">
-                                <div class="form-group">
-                                    <label>Cash</label>
-                                    <input class="form-control" id="txtCash" min="0" type="number">
-                                    <span class="control-error"
-                                          id="cash-empty-error"></span>
-                                </div>
-                            </div>
-                            <div class="col-6 mt-2">
-                                <div class="form-group">
-                                    <label>Discount</label>
-                                    <input class="form-control" id="txtDiscount" min="0" type="number">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="form-group">
-                                    <label>Balance</label>
-                                    <input class="form-control" id="txtBalance" type="text">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-4">
-                                <button class="btn btn-success" id="btnSubmitOrder" type="button">Purchase</button>
-                            </div>
-                        </div>
-                    </section>
-                </div>
             </div>
             <!--order table-->
             <div class="col-md-12 mt-4" style="height:180px; overflow-y: scroll">
