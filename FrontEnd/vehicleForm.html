@@ -111,7 +111,7 @@
                 <input type="text" id="txtVehicleID" class="form-control" placeholder="Vehicle ID" aria-label="Vehicle ID" name="vId">
             </div>
             <div class="col">
-                <select class="form-select" aria-label="Default select example" name="vBrand">
+                <select class="form-select" id="txtVehicleBrand" aria-label="Default select example" name="vBrand">
                     <option selected>Vehicle Brand</option>
                     <option value="1">Toyota</option>
                     <option value="2">Honda</option>
@@ -119,12 +119,12 @@
                 </select>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Type" aria-label="Type" name="vType">
+                <input type="text" class="form-control" id="txtVehicleType" placeholder="Type" aria-label="Type" name="vType">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-                <select class="form-select" aria-label="Default select example" name="vSeat">
+                <select class="form-select" id="txtVehicleSeats" aria-label="Default select example" name="vSeat">
                     <option selected>Seats</option>
                     <option value="1">4</option>
                     <option value="2">6</option>
@@ -134,25 +134,25 @@
                 </select>
             </div>
             <div class="col">
-                <select class="form-select" aria-label="Default select example" name="vFuel">
+                <select class="form-select" id="txtVehicleFuel" aria-label="Default select example" name="vFuel">
                     <option selected>Fuel Type</option>
                     <option value="1">Petrol</option>
                     <option value="2">Diesel</option>
                 </select>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Rates" aria-label="Rates" name="vRates">
+                <input type="text" class="form-control" id="txtVehicleRates" placeholder="Rates" aria-label="Rates" name="vRates">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-                <input class="form-control" type="file" id="formFileMultiple" multiple name="vFile">
+                <input class="form-control" type="file" id="txtVehicleFile" multiple name="vFile">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Status" aria-label="Status" name="vStatus">
+                <input type="text" class="form-control" id="txtVehicleStatus" placeholder="Status" aria-label="Status" name="vStatus">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Number" aria-label="Number" name="vNumber">
+                <input type="text" class="form-control" id="txtVehicleNumber" placeholder="Number" aria-label="Number" name="vNumber">
             </div>
 
         </div>
@@ -246,7 +246,6 @@
             }
         });
     });
-
     //Update Driver
    /* $("#btnDriUpdate").click(function () {
         let driId = $("#txtDriverID").val();
@@ -361,6 +360,105 @@
     }
 */
 
+/*
+
+    $("#btnVehicle").click(function () {
+
+
+        let formData = new FormData();
+
+        let VId = $("#txtVehicleID").val();
+        let VBrand = $("#txtVehicleBrand").val();
+        let VType = $("#txtVehicleType").val();
+        let VSeats = $("#txtVehicleSeats").val();
+        let VFuel = $("#txtVehicleFuel").val();
+        let VRates = $("#txtVehicleRates").val();
+      //  let VFile = $("#txtVehicleFile").val();
+        let VStatus = $("#txtVehicleStatus").val();
+        let VNumber = $("#txtVehicleNumber").val();
+
+        console.log(VId);
+
+        formData.append("VId",VId);
+        formData.append("VBrand",VBrand);
+        formData.append("VType",VType);
+        formData.append("VSeats",VSeats);
+        formData.append("VFuel",VFuel);
+        formData.append("VRates",VRates);
+       // formData.append("VFile",VFile);
+        formData.append("VStatus",VStatus);
+        formData.append("VNumber",VNumber);
+
+        let file1 = $("#file-1")[0].files[0];
+        let fileName1 = $("#file-1")[0].files[0].name;
+
+        formData.append("VFile",file1,fileName1);
+
+        $.ajax({
+            url: baseUrl + "vehicle",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            async: true,
+            contentType: false,
+            processData: false,
+            enctype:"multipart/form-data",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+                // getAllCustomers();
+
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });
+*/
+/*
+    $("#btnVehicle").click(function () {
+        let formData = $("#vehicleForm").serialize();
+
+        console.log(formData);
+
+        let file1 = $("#file-1")[0].files[0];
+        let fileName1 = $("#file-1")[0].files[0].name;
+
+        formData.append("VFile",file1,fileName1);
+
+        $.ajax({
+            url: baseUrl+"vehicle",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            async: true,
+            contentType: false,
+            processData: false,
+            enctype:"multipart/form-data",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+               // getAllDrivers();
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });*/
 
 </script>
 </body>
