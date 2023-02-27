@@ -13,6 +13,8 @@ public interface NewAdminService {
 
     public ArrayList<NewAdminDTO> getAllAdmin();
 
+   // public NewAdminDTO searchAdminById(String Id);
+
 
 
 

@@ -46,6 +46,12 @@ public class NewAdminController {
         return new ResponseUtil("ok","scuccess loaded",service.getAllAdmin());
     }
 
+  /*  @GetMapping(path = "/{Id}")
+    public ResponseUtil searchAdminById(@PathVariable String Id){
+
+        return new ResponseUtil("ok","scuccess loaded",service.searchAdminById(Id));
+    }*/
+
 
 
 
