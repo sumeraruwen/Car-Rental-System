@@ -82,7 +82,7 @@ main{
     top: 0;
     position: relative;
     height: 100vh;
-    background: url("images/11-1740-1619498282.jpg");
+    background: url("../images/11-1740-1619498282.jpg");
     background-size: cover;
     background-position: center;
 
@@ -218,7 +218,7 @@ main>section:nth-child(3){
     grid-template-columns: repeat(4,1fr);
 
 
-    background-image: url("images/11-1740-1619498282.jpg");
+    background-image: url("../images/11-1740-1619498282.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
