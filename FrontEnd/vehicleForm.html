@@ -157,7 +157,7 @@
 
     //Button Events
     //Add Driver
-    $("#btnVehicle").click(function () {
+   /* $("#btnVehicle").click(function () {
         let formData = $("#vehicleForm").serialize();
         $.ajax({
             url: baseUrl+"vehicle",
@@ -186,10 +186,10 @@
         });
 
     });
-
+*/
 
     //Delete Driver
-    $("#btnVDelete").click(function () {
+   /* $("#btnVDelete").click(function () {
         let vId = $("#txtVehicleID").val();
         $.ajax({
             url: baseUrl+"vehicle?vId=" + vId,
@@ -203,7 +203,7 @@
                 alert(message);
             }
         });
-    });
+    });*/
     //Update Driver
    /* $("#btnDriUpdate").click(function () {
         let driId = $("#txtDriverID").val();
@@ -319,7 +319,7 @@
 */
 
 
-   /* $("#btnVehicle").click(function () {
+    $("#btnVehicle").click(function () {
 
 
         let formData = new FormData();
@@ -330,11 +330,11 @@
         let vSeats = $("#txtVehicleSeats").val();
         let vFuel = $("#txtVehicleFuel").val();
         let vRates = $("#txtVehicleRates").val();
-    //  let vFile = $("#txtVehicleFile").val();
+      let vFile = $("#txtVehicleFile").val();
         let vStatus = $("#txtVehicleStatus").val();
         let vNumber = $("#txtVehicleNumber").val();
 
-        console.log(VId);
+        console.log(vFile);
 
         formData.append("vId",vId);
         formData.append("vBrand",vBrand);
@@ -346,8 +346,8 @@
         formData.append("vStatus",vStatus);
         formData.append("vNumber",vNumber);
 
-        let file1 = $("#file")[0].files[0];
-        let fileName1 = $("#file")[0].files[0].name;
+        let file1 = $("#vFile")[0].files[0];
+        let fileName1 = $("#vFile")[0].files[0].name;
 
         formData.append("vFile",file1,fileName1);
 
@@ -377,7 +377,7 @@
             }
         });
 
-    });*/
+    });
 /*
     $("#btnVehicle").click(function () {
         let formData = $("#vehicleForm").serialize();

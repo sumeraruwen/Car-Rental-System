@@ -2,10 +2,7 @@ package lk.ijse.spring.config;
 
 
 import lk.ijse.spring.advisor.AppWideExceptionHandler;
-import lk.ijse.spring.controller.CustomerController;
-import lk.ijse.spring.controller.DriverController;
-import lk.ijse.spring.controller.NewAdminController;
-import lk.ijse.spring.controller.VehicleController;
+import lk.ijse.spring.controller.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {DriverController.class, CustomerController.class, VehicleController.class, NewAdminController.class, AppWideExceptionHandler.class})
+@ComponentScan(basePackageClasses = {DriverController.class, CustomerController.class, VehicleController.class, NewAdminController.class, CarController.class, AppWideExceptionHandler.class})
 public class WebAppConfig implements WebMvcConfigurer {
 
     @Bean

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Car2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Car PANEL2</a>
+    <button class="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Easy Car Rental</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">DashBoard</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Booking</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Vehicles</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="driverForm.html">Drivers</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Customers</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<br><br><br>
+
+
+<main class="container-fluid" id="carContent">
+
+  <form id="carAddForm" class="row g-3">
+
+      <div class="row g-3">
+        <div class="col">
+          <label for="txtRegNo">Car Reg No</label>
+          <input class="form-control" id="txtRegNo" type="text" name="regNo">
+          <span class="control-error" id="lblRegNo"></span>
+        </div>
+        <div class="col">
+          <label for="txtCarModel">Car Model</label>
+          <input class="form-control" id="txtCarModel" type="text" name="carModel">
+          <span class="control-error" id="lblmodel"></span>
+        </div>
+        <div class="col">
+          <label for="txtCarType">Car Type</label>
+          <select class="form-control" id="txtCarType" name="carType">
+            <option value="General">General</option>
+            <option value="Premium">Premium</option>
+            <option value="Luxury">Luxury</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3">
+          <div class="col">
+            <label for="txtTransmission">Transmission</label>
+            <select class="form-control" id="txtTransmission" name="carTransmission">
+              <option value="Auto">Auto</option>
+              <option value="Manual">Manual</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="txtFuelType">Fuel Type</label>
+            <input class="form-control" id="txtFuelType" type="text" name="fuelType">
+            <span class="control-error" id="lblfueltype"></span>
+          </div>
+          <div class="col">
+            <label for="txtCarColor">Color</label>
+            <input class="form-control" id="txtCarColor" type="text" name="carColor">
+            <span class="control-error" id="lblcolor"></span>
+          </div>
+        <div>
+
+        </div>
+
+       <div class="row g-3">
+            <div class="col">
+              <label for="txtPassenger">No Passengers</label>
+              <input class="form-control" id="txtPassenger" type="text" name="passenger">
+              <span class="control-error" id="lblPassenger"></span>
+            </div>
+            <div class="col">
+              <label for="txtLossDamage">Loss Dammage</label>
+              <input class="form-control" id="txtLossDamage" type="text" name="lossDamage">
+              <span class="control-error" id="lblLossDamage"></span>
+            </div>
+            <div class="col">
+              <label for="txtDailyRate">Daily rate</label>
+              <input class="form-control" id="txtDailyRate" type="text" name="dailyRate">
+              <span class="control-error" id="lbldailyrate"></span>
+            </div>
+       </div>
+
+       <div class="row g-3">
+          <div class="col">
+            <label for="txtMonthlyRate">Monthly rate</label>
+            <input class="form-control" id="txtMonthlyRate" type="text" name="monthlyRate">
+            <span class="control-error" id="lblmonthlyrate"></span>
+          </div>
+          <div class="col">
+            <label for="txtExtraKm">Extra Km Price</label>
+            <input class="form-control" id="txtExtraKm" type="text" name="extraKm">
+            <span class="control-error" id="lblextrakm"></span>
+          </div>
+          <div class="col">
+            <label for="CarImage">Image</label>
+            <input class="form-control" id="CarImage" type="file" name="carImage">
+            <span class="control-error" id="lblimage"></span>
+          </div>
+       </div>
+    </div>
+
+  </form>
+
+  <button class="btn btn-success " type="button" id="carAddBtn">Add</button>
+    <button class="btn btn-danger" type="button" id="btnCarDelete">Remove Car</button>
+    <button class="btn btn-warning" type="button" id="btnCarUpdate">Update Car</button>
+
+    <br>
+    <div class="col-12">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+            <tr>
+                <th>RegNo</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Transmission</th>
+                <th>Fuel</th>
+                <th>Color</th>
+                <th>Passengers</th>
+                <th>LossDamage</th>
+                <th>DailyRate</th>
+                <th>MonthlyRate</th>
+                <th>ExtraPrice</th>
+                <th>Image</th>
+
+            </tr>
+            </thead>
+            <tbody id="tblCar">
+
+            </tbody>
+        </table>
+    </div>
+
+</main>
+<script src="asserts/js/jquery-3.6.1.min.js"></script>
+<script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+
+  let baseUrl="http://localhost:8080/BackEnd_war/";
+  getAllCars();
+
+  //Add Car
+  $("#carAddBtn").click(function () {
+
+    // let formData = $("#carAddForm").serialize();
+    let formData = new FormData();
+
+    let regNo = $("#txtRegNo").val();
+    let carModel = $("#txtCarModel").val();
+    let carType = $("#txtCarType").val();
+    let transmission = $("#txtTransmission").val();
+    let fuelType = $("#txtFuelType").val();
+    let carColor = $("#txtCarColor").val();
+    let passengers = $("#txtPassenger").val();
+    let lossDamage = $("#txtLossDamage").val();
+    let dailyRate = $("#txtDailyRate").val();
+    let monthlyRate = $("#txtMonthlyRate").val();
+    let extraKm = $("#txtExtraKm").val();
+
+    formData.append("regNo",regNo);
+    formData.append("carModel",carModel);
+    formData.append("carType",carType);
+    formData.append("carTransmission",transmission);
+    formData.append("fuelType",fuelType);
+    formData.append("carColor",carColor);
+    formData.append("passenger",passengers);
+    formData.append("lossDamage",lossDamage);
+    formData.append("dailyRate",dailyRate);
+    formData.append("monthlyRate",monthlyRate);
+    formData.append("extraKm",extraKm);
+    //
+    let file1 = $("#CarImage")[0].files[0];
+    let fileName1 = $("#CarImage")[0].files[0].name;
+
+    formData.append("carImage",file1,fileName1);
+
+    $.ajax({
+      url: baseUrl + "car",
+      method: "post",
+      data: formData,
+      dataType: "json",
+      async: true,
+      contentType: false,
+      processData: false,
+      enctype:"multipart/form-data",
+      success: function (res) {
+        // invoked if the response status code is in 200 range
+        console.log("Success Method Invoked")
+        console.log(res);
+        alert(res.message);
+        getAllCars();
+
+      },
+      error: function (error) {
+        // invokes if status code range is 500 range or 400 range
+        console.log("Error Method Invoked");
+        console.log(JSON.parse(error.responseText));
+        alert(JSON.parse(error.responseText).message);
+      }
+    });
+  });
+
+
+  //Get all Driver Function
+  function getAllCars() {
+      $("#tblCar").empty();
+      $.ajax({
+          url: baseUrl+"car",
+          success: function (res) {
+              for (let g of res.data) {
+                  let RegNo = g.regNo;
+                  let Model = g.carModel;
+                  let Type = g.carType;
+                  let Transmission = g.carTransmission;
+                  let Fuel = g.fuelType;
+                  let Color= g.carColor;
+                  let Passengers= g.passenger;
+                  let LossDamage= g.lossDamage;
+                  let DailyRate= g.dailyRate;
+                  let MonthlyRate= g.monthlyRate;
+                  let ExtraPrice= g.extraKm;
+                  let Image= g.carImage;
+
+                  let row =
+                      "<tr>" +
+                      "<td>" + RegNo + "</td>" +
+                      "<td>" + Model + "</td>" +
+                      "<td>" + Type + "</td>" +
+                      "<td>" + Transmission + "</td>" +
+                      "<td>" + Fuel + "</td>" +
+                      "<td>" + Color + "</td>" +
+                      "<td>" + Passengers + "</td>" +
+                      "<td>" + LossDamage + "</td>" +
+                      "<td>" + DailyRate + "</td>" +
+                      "<td>" + MonthlyRate + "</td>" +
+                      "<td>" + ExtraPrice + "</td>" +
+                      "<td>" + Image + "</td>" +
+                      "" +
+                      "</tr>";
+                  $("#tblCar").append(row);
+              }
+              bindRowClickEvents();
+              setTextFieldValues("", "", "", "","", "", "", "","","","");
+          },
+          error: function (error) {
+              let message = JSON.parse(error.responseText).message;
+              alert(message);
+          }
+      });
+  }
+
+
+  //Delete Driver
+  $("#btnCarDelete").click(function () {
+      let carId = $("#txtRegNo").val();
+      $.ajax({
+          url: baseUrl+"car?carId=" + carId,
+          method: "delete",
+          success: function (resp) {
+              getAllCars();
+              alert(resp.message);
+          },
+          error: function (error) {
+              let message = JSON.parse(error.responseText).message;
+              alert(message);
+          }
+      });
+  });
+
+  //Update Driver
+  $("#btnCarUpdate").click(function () {
+      let regNo = $("#txtRegNo").val();
+      let carModel = $("#txtCarModel").val();
+      let carType = $("#txtCarType").val();
+      let carTransmission = $("#txtTransmission").val();
+      let fuelType = $("#txtFuelType").val();
+      let carColor = $("#txtCarColor").val();
+      let passenger = $("#txtPassenger").val();
+      let lossDamage = $("#txtLossDamage").val();
+      let dailyRate = $("#txtDailyRate").val();
+      let monthlyRate = $("#txtMonthlyRate").val();
+      let extraKm = $("#txtExtraKm").val();
+
+      var carOb = {
+          regNo: regNo,
+          carModel: carModel,
+          carType: carType,
+          carTransmission: carTransmission,
+          fuelType: fuelType,
+          carColor: carColor,
+          passenger: passenger,
+          lossDamage: lossDamage,
+          dailyRate: dailyRate,
+          monthlyRate: monthlyRate,
+          extraKm: extraKm
+      }
+      $.ajax({
+          url: baseUrl+"car",
+          method: "put",
+          contentType: "application/json",
+          data: JSON.stringify(carOb),
+          dataType: "json",
+          success: function (resp) {
+              getAllDrivers();
+              alert(resp.message);
+          },
+          error: function (error) {
+              let message = JSON.parse(error.responseText).message;
+              alert(message);
+          }
+      });
+  });
+
+
+  //Bind events for the table rows function
+  function bindRowClickEvents() {
+      $("#tblCar>tr").click(function () {
+          let regNo = $(this).children(":eq(0)").text();
+          let carModel = $(this).children(":eq(1)").text();
+          let carType = $(this).children(":eq(2)").text();
+          let carTransmission = $(this).children(":eq(3)").text();
+          let fuelType = $(this).children(":eq(4)").text();
+          let carColor = $(this).children(":eq(5)").text();
+          let passenger = $(this).children(":eq(6)").text();
+          let lossDamage = $(this).children(":eq(7)").text();
+          let dailyRate = $(this).children(":eq(8)").text();
+          let monthlyRate = $(this).children(":eq(9)").text();
+          let extraKm = $(this).children(":eq(10)").text();
+          // console.log(id, name, address, salary);
+
+          //setting table details values to text fields
+
+          $("#txtRegNo").val(regNo);
+          $("#txtCarModel").val(carModel);
+          $("#txtCarType").val(carType);
+          $("#txtTransmission").val(carTransmission);
+          $("#txtFuelType").val(fuelType);
+          $("#txtCarColor").val(carColor);
+          $("#txtPassenger").val(passenger);
+          $("#txtLossDamage").val(lossDamage);
+          $("#txtDailyRate").val(dailyRate);
+          $("#txtMonthlyRate").val(monthlyRate);
+          $("#txtExtraKm").val(extraKm);
+
+      });
+  }
+
+  //Set text fields values function
+  function setTextFieldValues(regNo, carModel, carType, carTransmission,fuelType,carColor,passenger,lossDamage,dailyRate,monthlyRate,extraKm) {
+      $("#txtRegNo").val(regNo);
+      $("#txtCarModel").val(carModel);
+      $("#txtCarType").val(carType);
+      $("#txtTransmission").val(carTransmission);
+      $("#txtFuelType").val(fuelType);
+      $("#txtCarColor").val(carColor);
+      $("#txtPassenger").val(passenger);
+      $("#txtLossDamage").val(lossDamage);
+      $("#txtDailyRate").val(dailyRate);
+      $("#txtMonthlyRate").val(monthlyRate);
+      $("#txtExtraKm").val(extraKm);
+  }
+
+
+</script>
+
+</body>
+</html>
