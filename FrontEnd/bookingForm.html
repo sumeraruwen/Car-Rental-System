@@ -150,7 +150,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>Leaving Date :</label>
-                                            <input class="form-control" id="txtDate" type="date">
+                                            <input class="form-control" id="txtLDate" type="date">
 
 
                                         </div>
@@ -158,7 +158,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>Return Date :</label>
-                                            <input class="form-control" id="txtDate" type="date">
+                                            <input class="form-control" id="txtRDate" type="date">
                                         </div>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Cus Id :</label>
-                                            <input class="form-control" id="orderCustomerName" type="text">
+                                            <input class="form-control" id="orderCustomerId" type="text">
                                         </div>
                                     </div>
 
@@ -190,33 +190,34 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>VId :</label>
-                                            <select class="form-control" id="selectItemCode"></select>
+                                            <select class="form-control" id="selectCarRegNo"></select>
                                             <span class="control-error"
                                                   id="item-empty-error"></span>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label>VBrand :</label>
-                                            <input class="form-control" id="txtItemCode" type="text">
+                                            <label>RegNo :</label>
+                                            <input class="form-control" id="txtRegNo" type="text">
                                         </div>
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <label>Rental Fee :</label>
-                                            <input class="form-control" id="txtItemDescription" type="text">
+                                            <label>Car Model :</label>
+                                            <input class="form-control" id="txtCarModel" type="text">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label class="">Payement :</label>
-                                            <input class="form-control" id="txtItemPrice" type="text">
+                                            <label class="">RentalFee :</label>
+                                            <input class="form-control" id="txtRentalFee" type="text">
                                         </div>
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <label class="">Status :</label>
-                                            <input class="form-control" id="txtQTYOnHand" type="text">
+                                            <label>DrivID :</label>
+                                            <select class="form-control" id="selectDriId"></select>
+                                            <span class="control-error"></span>
                                         </div>
                                     </div>
                                     <hr>
@@ -261,6 +262,85 @@
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+
+    loadAllCar();
+    loadAllDrivers();
+    setDates();
+
+    function loadAllCar() {
+        $("#selectCarRegNo").empty();
+        $.ajax({
+            url: baseUrl + "car",
+            success: function (res) {
+                for (let c of res.data) {
+                    let regNo = c.regNo;
+                    $("#selectCarRegNo").append(`<option value="${regNo}">${regNo}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+
+    function loadAllDrivers() {
+        $("#selectDriId").empty();
+        $.ajax({
+            url: baseUrl + "driver",
+            success: function (res) {
+                for (let d of res.data) {
+                    let driId = d.dId;
+                    $("#selectDriId").append(`<option value="${driId}">${driId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    function searchCar(regNo) {
+        let response = "";
+        $.ajax({
+            url: baseUrl + "car",
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                response = resp.data.filter((i) => {
+                    return i.regNo == regNo;
+                });
+            }
+        });
+        return response;
+    }
+
+
+    $("#selectCarRegNo").change(function () {
+        let regNo = $("#selectCarRegNo").val();
+        $("#txtRegNo").val(regNo);
+        let res = searchCar(regNo);
+        if (res.length > 0) {
+            $("#txtCarModel").val(res[0].carModel);
+          //  $("#txtDailyRate").val(res[0].dailyRate);
+           $("#txtRentalFee").val(res[0].dailyRate);
+        }
+    });
+
+
+    function setDates() {
+        let date = new Date().toJSON().split("T")[0];
+        $("#txtDate").val(date);
+    }
+
+
+</script>
+
 </body>
 </html>
 
