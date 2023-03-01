@@ -1,3 +1,4 @@
+/*
 package lk.ijse.spring.dto;
 
 import lk.ijse.spring.entity.Car;
@@ -18,10 +19,11 @@ public class BookingDTO {
     private String bookingDate;
     private String leavingDate;
     private String returnDate;
-    private double rentalFee;
+    private String rentalFee;
 
     private Customer customer;
     private Car vehicle;
     private Driver driver;
 }
 
+*/

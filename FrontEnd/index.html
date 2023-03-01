@@ -19,6 +19,23 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 
+    <style>
+
+        #tblIndex{
+            border-collapse: collapse;
+        }
+
+        #tblIndex td, th{
+           border: none;
+        }
+
+        body{
+            margin: 0;
+        }
+
+
+    </style>
+
 </head>
 <body>
 
@@ -43,42 +60,7 @@
         </nav>
     </section>
 </header>
-<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>-->
+
 
 
 <main class="container-fluid" id="homeContent">
@@ -190,9 +172,28 @@
     <!-- Cars Section Start-->
     <section id="portfolio">
         <section>
-            <h2>VEHICLES</h2>
+            <h2 id="car">VEHICLES</h2>
         </section>
         <section>
+            <br>
+            <div class="col-12">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Model</th>
+                        <th>Type</th>
+                        <th>Fuel</th>
+                        <th>Daily Rate</th>
+                        <th>Image</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="tblIndex">
+
+                    </tbody>
+                </table>
+            </div>
+
 
         </section>
     </section>
@@ -259,7 +260,7 @@
 </main>
 
 <footer>
-    <div><!--<i class="fa-regular fa-copyright"></i>--> &copy; <strong>Esay Car Rental.</strong> All Rights Reserved <br>
+    <div><!--<i class="fa-regular fa-copyright"></i>--> &copy; <strong>Easy Car Rental.</strong> All Rights Reserved <br>
         Designed by Sumera Ruwen</div>
 </footer>
 
@@ -268,6 +269,59 @@
 <script src="asserts/js/bootstrap.min.js"></script>
 <script>
 
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    getAllCars();
+
+
+    //Get all Customer Function
+    function getAllCars() {
+        $("#tblIndex").empty();
+        $.ajax({
+            url: baseUrl+"car",
+            success: function (res) {
+                for (let x of res.data) {
+                    let Model = x.carModel;
+                    let Type = x.carType;
+                    let Fuel = x.fuelType;
+                    let DailyRate = x.dailyRate;
+                    let Image = x.carImage;
+
+
+
+                    let row = /*"<tr><td>" + Model + "</td><td>" + Type + "</td><td>" + Fuel + "</td><td>" + DailyRate + "</td><td>" + Image + "</td></tr>";*/
+                        `<tr>
+
+
+                        <td>${Model}</td>
+                        <td>${Type}</td>
+                        <td>${Fuel}</td>
+                        <td>${DailyRate}</td>
+
+                        <td><img src="${baseUrl + Image}" width="100px" height="100px"></td>
+
+
+                            </tr>`;
+                    $("#tblIndex").append(row);
+                }
+                // bindRowClickEvents();
+                // setTextFieldValues("", "", "", "","", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(carModel, carType, fuelType,dailyRate) {
+        $("#txtCarModel").val(carModel);
+        $("#txtCarType").val(carType);
+        $("#txtFuelType").val(fuelType);
+        $("#txtDailyRate").val(dailyRate);
+
+
+    }
 
 
 

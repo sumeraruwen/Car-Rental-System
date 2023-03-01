@@ -78,5 +78,6 @@
     <orderEntry type="library" name="Maven: org.modelmapper:modelmapper:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2" level="project" />
   </component>
 </module>

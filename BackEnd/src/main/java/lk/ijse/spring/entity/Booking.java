@@ -1,3 +1,4 @@
+/*
 package lk.ijse.spring.entity;
 
 import lombok.AllArgsConstructor;
@@ -19,15 +20,15 @@ public class Booking {
     private String bookingDate;
     private String leavingDate;
     private String returnDate;
-    private double rentalFee;
+    private String rentalFee;
 
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "cId",referencedColumnName = "cId",nullable = false)
+    @JoinColumn(name = "cId",referencedColumnName = "cId")
     private Customer customer;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "regNo",referencedColumnName = "regNo",nullable = false)
+    @JoinColumn(name = "regNo",referencedColumnName = "regNo")
     private Car car;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
@@ -35,3 +36,4 @@ public class Booking {
     private Driver driver;
 
 }
+*/

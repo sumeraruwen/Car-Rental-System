@@ -23,4 +23,6 @@ public class CarDTO {
     private double monthlyRate;
     private double extraKm;
     private String carImageUrl;
+
+
 }

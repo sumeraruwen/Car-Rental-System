@@ -121,6 +121,7 @@
 </main>-->
 
 <main class="container-fluid" id="bookingContent">
+    <form id="bookingForm">
     <div class="container-fluid mt-4">
         <!--main tile-->
         <div class="jumbotron pt-4">
@@ -129,12 +130,13 @@
                     <div class="card">
                         <div class="card-header bg-primary font-weight-bolder">Invoice Details</div>
                         <div class="card-body">
+
                             <form>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>Booking ID :</label>
-                                            <input class="form-control" id="txtOrderID" type="text">
+                                            <input class="form-control" id="txtBookingId" type="text">
                                             <span class="control-error"
                                                   id="orderId-invalid-error"></span>
                                         </div>
@@ -166,14 +168,14 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Cus Id :</label>
-                                            <input class="form-control" id="orderCustomerId" type="text">
+                                            <input class="form-control" id="txtCusId" type="text">
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Email :</label>
-                                            <input class="form-control" id="orderCustomerAddress" type="text">
+                                            <input class="form-control" id="txtCusEmail" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -225,12 +227,19 @@
 
                                 </div>
                                 <div class="form-group text-right">
-                                    <button class="btn btn-danger col-12 col-sm-auto" id="btnAddToTable" type="button">
-                                        Book Vehicle
 
-                                    </button>
                                 </div>
                             </form>
+
+
+                            <button class="btn btn-danger col-12 col-sm-auto" id="btnAdd" type="button">
+                                Book Vehicle
+
+                            </button>
+
+                            <div class="col-4 mt-4">
+                                <button class="btn btn-success" id="btnSubmitOrder" type="button">Confirm</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -241,13 +250,12 @@
                 <table class="table table-bordered text-white">
                     <thead class="bg-primary">
                     <tr>
-                        <th>BId</th>
-                        <th>BDate</th>
+                        <th>BookingID</th>
+                        <th>RegNo</th>
+                        <th>cId</th>
                         <th>LDate</th>
                         <th>RDate</th>
-                        <th>CId</th>
-                        <th>VId</th>
-                        <th>Payment</th>
+                        <th>RentalFee</th>
                     </tr>
                     </thead>
                     <tbody class="bg-light text-dark" id="orderTable">
@@ -258,6 +266,7 @@
             <!---------->
         </div>
     </div>
+    </form>
 </main>
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
@@ -336,6 +345,100 @@
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
         $("#txtDate").val(date);
+    }
+
+    $("#btnAdd").click(function () {
+        let bookingId = $("#txtBookingId").val();
+        let regNo = $("#txtRegNo").val();
+        let cId = $("#txtCusId").val();
+        let LDate = $("#txtLDate").val();
+        let RDate = $("#txtRDate").val();
+        let rentalFee = $("#txtRentalFee").val();
+       // let total = parseFloat(rentFee) * parseFloat(dayOfRent);
+        $("#orderTable").append(`<tr><td>${bookingId}</td><td>${regNo}</td><td>${cId}</td><td>${LDate}</td><td>${RDate}</td><td>${rentalFee}</td></tr>`);
+        //console.log(getTableDetails(bookingId));
+    });
+
+
+        $("#btnSubmitOrder").click(function () {
+          //  console.log("Helloo");
+            let bookingId = $("#txtBookingId").val();
+
+            let cId = $("#txtCusId").val();
+            let date = $("#txtDate").val();
+            let bookingD = getCarDetails(bookingId);
+            //let leavingDate = $("#txtLDate").val();
+           // let returnDate = $("#txtRDate").val();
+           // let rentalFee = $("#txtRentalFee").val();
+
+           // let cusId = $("#txtCusId").val();
+          //  let cusEmail = $("#txtCusEmail").val();
+
+          //  let regNo = $("#txtRegNo").val();
+          //  let cId = $("#txtCusId").val();
+           // let dId = $("#selectDriId").val();
+
+           // let orderD = getItemDetails(orderID);
+
+            let ob={
+                bookingId:bookingId,
+                date:date,
+                cId:cId,
+                bookingDetails:bookingD
+               /* returnDate:returnDate,
+                rentalFee:rentalFee,
+                regNo:regNo,
+                cId:cId,
+                dId:dId
+*/
+               // orderDetails:orderD
+            }
+            console.log(ob);
+            //send request
+            $.ajax({
+                url: baseUrl + "booking",
+                method:"post",
+                dataType: "json",
+                data:JSON.stringify(ob),
+                contentType:"application/json",
+                success: function (resp) {
+                    alert(resp.message);
+                },
+                error:function (error){
+                    alert(JSON.parse(error.responseText).message);
+                    //alert("oi")
+                }
+            });
+
+
+        });
+/*
+
+
+
+    function getItemDetails(bookingId) {
+        let rows = $("#orderTable").children().length;
+        var array = [];
+        for (let i = 0; i < rows; i++) {
+            let itCode = $("#orderTable").children().eq(i).children(":eq(0)").text();
+            let itPrice = $("#orderTable").children().eq(i).children(":eq(2)").text();
+            let itQty  = $("#orderTable").children().eq(i).children(":eq(3)").text();
+            array.push({oid:orderID, itemCode: itCode, qty: itQty, unitPrice: itPrice});
+        }
+        return array;
+    }
+*/
+
+    function getCarDetails(bookingId) {
+        let rows = $("#orderTable").children().length;
+        var array = [];
+        for (let i = 0; i < rows; i++) {
+            let regNo = $("#orderTable").children().eq(i).children(":eq(0)").text();
+            let cId = $("#orderTable").children().eq(i).children(":eq(2)").text();
+            let rentalFee  = $("#orderTable").children().eq(i).children(":eq(3)").text();
+            array.push({bookingId:bookingId, regNo: regNo, cId: cId, rentalFee: rentalFee});
+        }
+        return array;
     }
 
 

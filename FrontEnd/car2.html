@@ -5,6 +5,8 @@
     <title>Car2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+
+
 </head>
 <body>
 
@@ -231,7 +233,7 @@
         console.log(res);
         alert(res.message);
         getAllCars();
-
+          console.log(Image);
       },
       error: function (error) {
         // invokes if status code range is 500 range or 400 range
@@ -243,7 +245,7 @@
   });
 
 
-  //Get all Driver Function
+
   function getAllCars() {
       $("#tblCar").empty();
       $.ajax({
@@ -261,10 +263,10 @@
                   let DailyRate= g.dailyRate;
                   let MonthlyRate= g.monthlyRate;
                   let ExtraPrice= g.extraKm;
-                  let Image= g.carImage;
+                  let carImage= g.carImage;
 
                   let row =
-                      "<tr>" +
+                     /* "<tr>" +
                       "<td>" + RegNo + "</td>" +
                       "<td>" + Model + "</td>" +
                       "<td>" + Type + "</td>" +
@@ -278,11 +280,31 @@
                       "<td>" + ExtraPrice + "</td>" +
                       "<td>" + Image + "</td>" +
                       "" +
-                      "</tr>";
+                      "</tr>";*/
+
+                      `<tr>
+
+                        <td class="regNoID">${RegNo}</td>
+                        <td>${Model}</td>
+                        <td>${Type}</td>
+                        <td>${Transmission}</td>
+                        <td>${Fuel}</td>
+                        <td>${Color}</td>
+                        <td>${Passengers}</td>
+                        <td>${LossDamage}</td>
+                        <td>${DailyRate}</td>
+                        <td>${MonthlyRate}</td>
+                        <td>${ExtraPrice}</td>
+                        <td><img src="${baseUrl + carImage}" width="100px"></td>
+
+
+                            </tr>`;
+                  console.log(Image);
+
                   $("#tblCar").append(row);
               }
               bindRowClickEvents();
-              setTextFieldValues("", "", "", "","", "", "", "","","","");
+              setTextFieldValues("", "", "", "","", "", "", "","","","","");
           },
           error: function (error) {
               let message = JSON.parse(error.responseText).message;

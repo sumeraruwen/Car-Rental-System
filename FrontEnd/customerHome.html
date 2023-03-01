@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Rental System Cus Home</title>
+    <title>Car Rental System</title>
     <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="SumeraRuwen,sumera,summa,IJSE, GDSE, UX designers,ui , Full-stack ,Frontend , Backend ,HTML,CSS,App Development ,Game Development , Grapic Design ,Marketing Service">
@@ -18,6 +18,19 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+
+        #tblIndex{
+            border-collapse: collapse;
+        }
+
+        #tblIndex td, th{
+            border: none;
+        }
+
+
+    </style>
 
 </head>
 <body>
@@ -36,7 +49,8 @@
                 <li><a class="ad" href="#services">Services</a></li>
                 <li><a class="ad" href="#car">Cars</a></li>
                 <li><a class="ad" href="#contact">Contact</a></li>
-
+                <li><a class="ad" href="bookingForm.html">Booking</a></li>
+                <!-- <li><button>Sign In</button></li>-->
             </ul>
         </nav>
     </section>
@@ -191,6 +205,25 @@
             <h2>VEHICLES</h2>
         </section>
         <section>
+            <br>
+            <div class="col-12">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Model</th>
+                        <th>Type</th>
+                        <th>Fuel</th>
+                        <th>Daily Rate</th>
+                        <th>Image</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="tblIndex">
+
+                    </tbody>
+                </table>
+            </div>
+
 
         </section>
     </section>
@@ -257,7 +290,7 @@
 </main>
 
 <footer>
-    <div><!--<i class="fa-regular fa-copyright"></i>--> &copy; <strong>Esay Car Rental.</strong> All Rights Reserved <br>
+    <div><!--<i class="fa-regular fa-copyright"></i>--> &copy; <strong>Easy Car Rental.</strong> All Rights Reserved <br>
         Designed by Sumera Ruwen</div>
 </footer>
 
@@ -266,6 +299,59 @@
 <script src="asserts/js/bootstrap.min.js"></script>
 <script>
 
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    getAllCars();
+
+
+    //Get all Customer Function
+    function getAllCars() {
+        $("#tblIndex").empty();
+        $.ajax({
+            url: baseUrl+"car",
+            success: function (res) {
+                for (let x of res.data) {
+                    let Model = x.carModel;
+                    let Type = x.carType;
+                    let Fuel = x.fuelType;
+                    let DailyRate = x.dailyRate;
+                    let Image = x.carImage;
+
+
+
+                    let row = /*"<tr><td>" + Model + "</td><td>" + Type + "</td><td>" + Fuel + "</td><td>" + DailyRate + "</td><td>" + Image + "</td></tr>";*/
+                        `<tr>
+
+
+                        <td>${Model}</td>
+                        <td>${Type}</td>
+                        <td>${Fuel}</td>
+                        <td>${DailyRate}</td>
+
+                        <td><img src="${baseUrl + Image}" width="100px" height="100px"></td>
+
+
+                            </tr>`;
+                    $("#tblIndex").append(row);
+                }
+                // bindRowClickEvents();
+                // setTextFieldValues("", "", "", "","", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(carModel, carType, fuelType,dailyRate) {
+        $("#txtCarModel").val(carModel);
+        $("#txtCarType").val(carType);
+        $("#txtFuelType").val(fuelType);
+        $("#txtDailyRate").val(dailyRate);
+
+
+    }
 
 
 
