@@ -366,7 +366,7 @@
 
             let cId = $("#txtCusId").val();
             let date = $("#txtDate").val();
-            let bookingD = getCarDetails(bookingId);
+            let bookingDetails = getCarDetails(bookingId);
             //let leavingDate = $("#txtLDate").val();
            // let returnDate = $("#txtRDate").val();
            // let rentalFee = $("#txtRentalFee").val();
@@ -384,7 +384,7 @@
                 bookingId:bookingId,
                 date:date,
                 cId:cId,
-                bookingDetails:bookingD
+                bookingDetails:bookingDetails
                /* returnDate:returnDate,
                 rentalFee:rentalFee,
                 regNo:regNo,
@@ -412,31 +412,15 @@
 
 
         });
-/*
 
-
-
-    function getItemDetails(bookingId) {
-        let rows = $("#orderTable").children().length;
-        var array = [];
-        for (let i = 0; i < rows; i++) {
-            let itCode = $("#orderTable").children().eq(i).children(":eq(0)").text();
-            let itPrice = $("#orderTable").children().eq(i).children(":eq(2)").text();
-            let itQty  = $("#orderTable").children().eq(i).children(":eq(3)").text();
-            array.push({oid:orderID, itemCode: itCode, qty: itQty, unitPrice: itPrice});
-        }
-        return array;
-    }
-*/
 
     function getCarDetails(bookingId) {
         let rows = $("#orderTable").children().length;
         var array = [];
         for (let i = 0; i < rows; i++) {
             let regNo = $("#orderTable").children().eq(i).children(":eq(0)").text();
-            let cId = $("#orderTable").children().eq(i).children(":eq(2)").text();
-            let rentalFee  = $("#orderTable").children().eq(i).children(":eq(3)").text();
-            array.push({bookingId:bookingId, regNo: regNo, cId: cId, rentalFee: rentalFee});
+            let dailyRate  = $("#orderTable").children().eq(i).children(":eq(2)").text();
+            array.push({bookingId:bookingId, regNo: regNo, dailyRate: dailyRate});
         }
         return array;
     }

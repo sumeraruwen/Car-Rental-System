@@ -23,11 +23,11 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">DashBoard</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Booking</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Vehicles</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="driverForm.html">Drivers</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Customers</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="adminDash.html">DashBoard</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="Booking.html">Booking</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="car2.html">Vehicles</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="driverForm.html">Drivers</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="cusRegTable.html">Customers</a></li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
@@ -263,7 +263,7 @@
                   let DailyRate= g.dailyRate;
                   let MonthlyRate= g.monthlyRate;
                   let ExtraPrice= g.extraKm;
-                  let carImage= g.carImage;
+                  let carImage= g.carImageUrl;
 
                   let row =
                      /* "<tr>" +
@@ -299,7 +299,7 @@
 
 
                             </tr>`;
-                  console.log(Image);
+                  console.log(res);
 
                   $("#tblCar").append(row);
               }

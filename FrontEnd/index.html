@@ -34,6 +34,7 @@
         }
 
 
+
     </style>
 
 </head>
@@ -63,7 +64,10 @@
 
 
 
-<main class="container-fluid" id="homeContent">
+<main class="container-fluid" id="homeContent" style="
+    padding-left: 0px;
+    padding-right: 0px;
+">
     <section id="Home">
 
     </section>
@@ -174,9 +178,9 @@
         <section>
             <h2 id="car">VEHICLES</h2>
         </section>
-        <section>
+        <section id="carSection">
             <br>
-            <div class="col-12">
+            <!--<div class="col-12">
                 <table class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                     <tr>
@@ -192,6 +196,16 @@
 
                     </tbody>
                 </table>
+            </div>-->
+
+            <div >
+
+                <div id="carImg">
+                    <h2 id="model"></h2>
+
+                </div>
+
+
             </div>
 
 
@@ -276,7 +290,7 @@
     //Get all Customer Function
     function getAllCars() {
         $("#tblIndex").empty();
-        $.ajax({
+       /* $.ajax({
             url: baseUrl+"car",
             success: function (res) {
                 for (let x of res.data) {
@@ -284,11 +298,24 @@
                     let Type = x.carType;
                     let Fuel = x.fuelType;
                     let DailyRate = x.dailyRate;
-                    let Image = x.carImage;
+                    let Image = x.carImageUrl;
+
+                    let carDiv = $("<div style='width: 300px; height: 300px; color: black'>");
+                  let carImage = $("<img src=\"${baseUrl + Image}\" width=\"100px\" height=\"100px\">");
 
 
 
-                    let row = /*"<tr><td>" + Model + "</td><td>" + Type + "</td><td>" + Fuel + "</td><td>" + DailyRate + "</td><td>" + Image + "</td></tr>";*/
+                    carImage.attr("src",Image);
+
+                    carDiv.append(carImage);
+
+
+                    $("#carImg").append(carDiv);
+
+
+
+
+                  /!*  let row = /!*"<tr><td>" + Model + "</td><td>" + Type + "</td><td>" + Fuel + "</td><td>" + DailyRate + "</td><td>" + Image + "</td></tr>";*!/
                         `<tr>
 
 
@@ -301,7 +328,7 @@
 
 
                             </tr>`;
-                    $("#tblIndex").append(row);
+                    $("#tblIndex").append(row);*!/
                 }
                 // bindRowClickEvents();
                 // setTextFieldValues("", "", "", "","", "", "");
@@ -310,7 +337,45 @@
                 let message = JSON.parse(error.responseText).message;
                 alert(message);
             }
+        });*/
+        $.ajax({
+            url: baseUrl + "car",
+            success: function (res) {
+                if (res.data) {
+                    for (let x of res.data) {
+                        let Model = x.carModel;
+                        let Type = x.carType;
+                        let Fuel = x.fuelType;
+                        let DailyRate = x.dailyRate;
+                        let Image = x.carImageUrl;
+
+                        let carDiv = $("<div style='width: 350px; height: 400px; background-color: dodgerblue;" +
+                            " gap: 30px; margin-top: 30px; display: flex;  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.40);\n" +
+                            "    background-color: white;\n" +
+                            "    border-radius: 1rem; position: relative'>");
+                        let carImage = $("<img width='350px' height='200px'>");
+                        let heading = $("<h2>");
+                        let para = $("<p>");
+
+                        carImage.attr("src", baseUrl + Image);
+
+                        heading.text(Model);
+                        para.text(Type);
+
+                        carDiv.append(carImage,heading,para);
+                        $("#carImg").append(carDiv);
+                       // $("#model").append(carDiv);
+
+                    }
+                } else {
+                    console.log("No car data found");
+                }
+            },
+            error: function (err) {
+                console.log("Error fetching car data:", err);
+            },
         });
+
     }
 
     //Set text fields values function

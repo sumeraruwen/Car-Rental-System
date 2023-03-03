@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Booking PANEL</a>
+        <button class="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Easy Car Rental</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="customerHome.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Booking.html">Booking</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br><br><br>
+
+
+<main class="container-fluid" id="driverContent">
+  <!--<section class="row">
+    <div class="col-4">
+      <h1>Driver Registraion</h1>
+      <form id="customerForm">
+        <div class="form-group">
+          <label for="txtDriverID">Driver ID</label>
+          <input class="form-control" id="txtDriverID" type="text" name="did">
+          <span class="control-error" id="lbldriid"></span>
+        </div>
+        <div class="form-group">
+          <label for="txtDriverName">Driver Name</label>
+          <input class="form-control" id="txtDriverName" type="text" name="dname">
+          <span class="control-error" id="lbldriname"></span>
+        </div>
+        <div class="form-group">
+          <label for="txtDriverEmail">Driver Email</label>
+          <input class="form-control" id="txtDriverEmail" type="text" name="demail">
+          <span class="control-error" id="lbldriemail"></span>
+        </div>
+        <div class="form-group">
+          <label for="txtDriverPassword">Driver Password</label>
+          <input class="form-control" id="txtDriverPassword" type="password" name="dpassword">
+          <span class="control-error" id="lbldripassword"></span>
+        </div>
+        <div class="form-group">
+          <label for="txtDriverAddress">Driver Address</label>
+          <input class="form-control" id="txtDriverAddress" type="text" name="daddress">
+          <span class="control-error" id="lbldriaddress"></span>
+        </div>
+        <div class="form-group">
+          <label for="txtDriverContact">Driver Contact</label>
+          <input class="form-control" id="txtDriverContact" type="text" name="dcontact">
+          <span class="control-error" id="lbldricontact"></span>
+        </div>
+        <div class="form-group">
+          <label for="txtDriverAge">Driver Age</label>
+          <input class="form-control" id="txtDriverAge" type="text" name="dage">
+          <span class="control-error" id="lbldriage"></span>
+        </div>
+      </form>
+      <div class="btn-group">
+        <button class="btn btn-primary" type="button" id="btnDriverr">Save Driver</button>
+
+      </div>
+
+    </div>
+
+  </section>-->
+
+    <form class="row g-3" id="bookForm">
+        <div class="row g-3">
+            <div class="col">
+                <label>Booking Id :</label>
+                <input type="text" id="txtBookingID" class="form-control"  aria-label="Driver ID" name="bookingId">
+            </div>
+            <div class="col">
+                <label>Booking Date :</label>
+                <input class="form-control" id="txtDate" type="date" name="bDate">
+            </div>
+            <div class="col">
+                <label>Leaving Date :</label>
+                <input class="form-control" id="txtLDate" type="date" name="lDate">
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <label>Return Date :</label>
+                <input class="form-control" id="txtRDate" type="date" name="rDate">
+            </div>
+            <div class="col">
+                <label>Customer Id :</label>
+                <input type="text" id="txtCId" class="form-control"  aria-label="Driver ID" name="cId">
+            </div>
+            <div class="col">
+                <label>Email :</label>
+                <input type="text" id="txtCEmail" class="form-control"  aria-label="Driver ID" name="email">            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <label>VId :</label>
+                <select class="form-control" id="selectCarRegNo" name="VId"></select>
+                <span class="control-error"></span>
+            </div>
+            <div class="col">
+                <label>RegNo :</label>
+                <input type="text" id="txtRegNo" class="form-control"  aria-label="Driver ID" name="regNo">
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col">
+                <label>Car Model :</label>
+                <input type="text" id="txtCarModel" class="form-control"  aria-label="Driver ID" name="carModel">
+            </div>
+            <div class="col">
+                <label>Rental Fee :</label>
+                <input type="text" id="txtRentalFee" class="form-control"  aria-label="Driver ID" name="rentalFee">
+            </div>
+            <div class="col">
+                <label>Driver Id :</label>
+                <select class="form-control" id="selectDriver" name="dId"></select>
+                <span class="control-error"
+                      id="item-empty-error"></span>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>
+
+    </form>
+    <br>    <br>
+    <div class="col-6">
+        <button type="button" class="btn btn-success" id="btnBook">Book Vehicle</button>
+
+    </div>
+    <br>
+
+
+</main>
+
+
+
+<script src="asserts/js/jquery-3.6.1.min.js"></script>
+<script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    //load all customers from the database
+   // getAllDrivers();
+    loadAllCar();
+    loadAllDrivers();
+    setDates();
+
+    function loadAllCar() {
+        $("#selectCarRegNo").empty();
+        $.ajax({
+            url: baseUrl + "car",
+            success: function (res) {
+                for (let c of res.data) {
+                    let regNo = c.regNo;
+                    $("#selectCarRegNo").append(`<option value="${regNo}">${regNo}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+
+    function loadAllDrivers() {
+        $("#selectDriver").empty();
+        $.ajax({
+            url: baseUrl + "driver",
+            success: function (res) {
+                for (let d of res.data) {
+                    let driId = d.dId;
+                    $("#selectDriver").append(`<option value="${driId}">${driId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    function searchCar(regNo) {
+        let response = "";
+        $.ajax({
+            url: baseUrl + "car",
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                response = resp.data.filter((i) => {
+                    return i.regNo == regNo;
+                });
+            }
+        });
+        return response;
+    }
+
+
+    $("#selectCarRegNo").change(function () {
+        let regNo = $("#selectCarRegNo").val();
+        $("#txtRegNo").val(regNo);
+        let res = searchCar(regNo);
+        if (res.length > 0) {
+            $("#txtCarModel").val(res[0].carModel);
+            //  $("#txtDailyRate").val(res[0].dailyRate);
+            $("#txtRentalFee").val(res[0].dailyRate);
+        }
+    });
+
+
+    function setDates() {
+        let date = new Date().toJSON().split("T")[0];
+        $("#txtDate").val(date);
+    }
+
+
+
+    //Button Events
+    //Add Driver
+    $("#btnBook").click(function () {
+        let formData = $("#bookForm").serialize();
+        $.ajax({
+            url: baseUrl+"book",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+               // getAllDrivers();
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });
+
+
+   /* //Delete Driver
+    $("#btnDriDelete").click(function () {
+        let dId = $("#txtDriverID").val();
+        $.ajax({
+            url: baseUrl+"driver?dId=" + dId,
+            method: "delete",
+            success: function (resp) {
+                getAllDrivers();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });
+
+    //Update Driver
+    $("#btnDriUpdate").click(function () {
+        let driId = $("#txtDriverID").val();
+        let driName = $("#txtDriverName").val();
+        let driAddress = $("#txtDriverAddress").val();
+        let driEmail = $("#txtDriverEmail").val();
+        let driContact = $("#txtDriverContact").val();
+        let driAge = $("#txtDriverAge").val();
+        let driLicense = $("#txtDriverLicense").val();
+        let driStatus = $("#txtDriverStatus").val();
+
+        var driverOb = {
+            dId: driId,
+            dName: driName,
+            dAddress: driAddress,
+            dEmail: driEmail,
+            dContact: driContact,
+            dAge: driAge,
+            dLicense: driLicense,
+            dStatus: driStatus
+        }
+        $.ajax({
+            url: baseUrl+"driver",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(driverOb),
+            dataType: "json",
+            success: function (resp) {
+                getAllDrivers();
+                alert(resp.message);
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    });*/
+
+    //Get All Driver
+    $("#btnDriGetAll").click(function () {
+        getAllDrivers();
+    });
+
+
+    //Get all Driver Function
+/*
+    function getAllDrivers() {
+        $("#tblDriver").empty();
+        $.ajax({
+            url: baseUrl+"driver",
+            success: function (res) {
+                for (let d of res.data) {
+                    let DID = d.dId;
+                    let DName = d.dName;
+                    let DAddress = d.dAddress;
+                    let DEmail = d.dEmail;
+                    let DContact = d.dContact;
+                    let DAge= d.dAge;
+                    let DDrivingL= d.dDrivingL;
+                    let DStatus= d.dStatus;
+
+                    let row = "<tr><td>" + DID + "</td><td>" + DName + "</td><td>" + DAddress + "</td><td>" + DEmail + "</td><td>" + DContact + "</td><td>" + DAge + "</td><td>" + DDrivingL + "</td><td>" + DStatus + "</td></tr>";
+                    $("#tblDriver").append(row);
+                }
+                bindRowClickEvents();
+                setTextFieldValues("", "", "", "","", "", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+
+    //Bind events for the table rows function
+    function bindRowClickEvents() {
+        $("#tblDriver>tr").click(function () {
+            let dId = $(this).children(":eq(0)").text();
+            let dName = $(this).children(":eq(1)").text();
+            let dAddress = $(this).children(":eq(2)").text();
+            let dEmail = $(this).children(":eq(3)").text();
+            let dContact = $(this).children(":eq(4)").text();
+            let dAge = $(this).children(":eq(5)").text();
+            let dDrivingL = $(this).children(":eq(6)").text();
+            let dStatus = $(this).children(":eq(7)").text();
+            // console.log(id, name, address, salary);
+
+            //setting table details values to text fields
+
+             $("#txtDriverID").val(dId);
+             $("#txtDriverName").val(dName);
+             $("#txtDriverAddress").val(dAddress);
+             $("#txtDriverEmail").val(dEmail);
+             $("#txtDriverContact").val(dContact);
+             $("#txtDriverAge").val(dAge);
+             $("#txtDriverLicense").val(dDrivingL);
+             $("#txtDriverStatus").val(dStatus);
+
+        });
+    }
+
+    //Set text fields values function
+    function setTextFieldValues(dId, dName, dAddress, dEmail,dContact,dAge,dDrivingL,dStatus) {
+        $("#txtDriverID").val(dId);
+        $("#txtDriverName").val(dName);
+        $("#txtDriverAddress").val(dAddress);
+        $("#txtDriverEmail").val(dEmail);
+        $("#txtDriverContact").val(dContact);
+        $("#txtDriverAge").val(dAge);
+        $("#txtDriverLicense").val(dDrivingL);
+        $("#txtDriverStatus").val(dStatus);
+    }
+
+
+*/
+
+</script>
+</body>
+</html>
+

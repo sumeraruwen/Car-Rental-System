@@ -75,6 +75,8 @@ li a:hover::after{
 
 main{
     position: relative;
+    display: flex;
+    padding-left: 0;
 }
 
 #Home{
@@ -463,6 +465,29 @@ main>section:nth-child(5)>section>div>aside:nth-child(2)>div:nth-child(1)>div>i{
     position: relative;
     left: 20px;
 }
+
+#carSection{
+    width: 77%;
+    left: 0;
+    right: 0;
+    top: 50px;
+    margin: auto;
+    display: grid;
+   /* grid-template-rows: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);*/
+    gap: 30px;
+}
+
+/*#carImg{
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.40);
+    background-color: white;
+    border-radius: 1rem;
+    text-align: center;
+    width: 350px;
+    height: 400px;
+}*/
+
+
 
 /*===============================
           Footer Section

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 @ToString
 public class Customer {
 
+
     @Id
     private String cId;
     private String cName;
