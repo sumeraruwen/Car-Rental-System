@@ -55,70 +55,7 @@
 <br><br><br>
 
 
-<!--<main class="container-fluid" id="driverContent">
 
-    <form class="row g-3">
-        <div class="row g-3">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Booking ID" aria-label="Booking ID">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Booking Date" aria-label="Booking Date">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Leaving Date" aria-label="Return Date">
-            </div>
-        </div>
-        <div class="row g-3">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Payment" aria-label="Payment">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Rental Fee" aria-label="Rental Fee">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Rates" aria-label="Rates">
-            </div>
-        </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Status" aria-label="Status">
-            </div>
-
-
-        <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-            </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>
-    <br>
-    <div class="col-12">
-        <table class="table table-bordered table-hover">
-            <thead class="bg-primary text-white">
-            <tr>
-                <th>DID</th>
-                <th>DName</th>
-                <th>DAddress</th>
-                <th>DEmail</th>
-                <th>DContact</th>
-                <th>DAge</th>
-                <th>DLicense</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody id="tblDriver">
-
-            </tbody>
-        </table>
-    </div>
-
-</main>-->
 
 <main class="container-fluid" id="bookingContent">
     <form id="bookingForm">
@@ -364,9 +301,9 @@
           //  console.log("Helloo");
             let bookingId = $("#txtBookingId").val();
 
-            let cId = $("#txtCusId").val();
+            let cEmail = $("#txtCusEmail").val();
             let date = $("#txtDate").val();
-            let bookingDetails = getCarDetails(bookingId);
+            let reportsDetails = getCarDetails(bookingId);
             //let leavingDate = $("#txtLDate").val();
            // let returnDate = $("#txtRDate").val();
            // let rentalFee = $("#txtRentalFee").val();
@@ -383,8 +320,8 @@
             let ob={
                 bookingId:bookingId,
                 date:date,
-                cId:cId,
-                bookingDetails:bookingDetails
+                cEmail:cEmail,
+                reportsDetails:reportsDetails
                /* returnDate:returnDate,
                 rentalFee:rentalFee,
                 regNo:regNo,
@@ -418,9 +355,11 @@
         let rows = $("#orderTable").children().length;
         var array = [];
         for (let i = 0; i < rows; i++) {
-            let regNo = $("#orderTable").children().eq(i).children(":eq(0)").text();
-            let dailyRate  = $("#orderTable").children().eq(i).children(":eq(2)").text();
-            array.push({bookingId:bookingId, regNo: regNo, dailyRate: dailyRate});
+            let regNo = $("#orderTable").children().eq(i).children(":eq(1)").text();
+            let lDate = $("#orderTable").children().eq(i).children(":eq(3)").text();
+            let rDate = $("#orderTable").children().eq(i).children(":eq(4)").text();
+            let dailyRate  = $("#orderTable").children().eq(i).children(":eq(5)").text();
+            array.push({bookingId:bookingId, regNo: regNo,lDate:lDate,rDate:rDate, rentFee: dailyRate});
         }
         return array;
     }
