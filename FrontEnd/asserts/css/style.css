@@ -494,6 +494,12 @@ main>section:nth-child(5)>section>div>aside:nth-child(2)>div:nth-child(1)>div>i{
     height: 400px;*/
 }
 
+#car{
+    margin-top: 60px;
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 50px;
+}
 
 
 /*===============================

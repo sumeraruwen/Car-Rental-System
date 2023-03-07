@@ -5,6 +5,16 @@
     <title>Admin DashBoard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #chart{
+            width: 500px;
+            height: 400px;
+            background: url("asserts/images/basic-bar-graph (1).png");
+            background-size: cover;
+            background-position: center;
+        }
+
+    </style>
 </head>
 <body>
 <main>
@@ -56,7 +66,7 @@
             <button class="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Easy Car Rental</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -64,10 +74,10 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="adminDash.html">DashBoard</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="Booking.html">Booking</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="car2.html">Vehicles</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="driverForm.html">Drivers</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="cusRegTable.html">Customers</a></li>
+                     <!--   <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Log out</a></li>-->
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
@@ -105,7 +115,7 @@
                             <div class="card-header bg-danger font-weight-bolder">Customers</div>
                             <div class="card-body">
                                 <div class="dash-tile-icon"><i class="fas fa-users"></i></div>
-                                <div class="dash-tile-text text-right text-black-50"><h2>93</h2></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2 id="cusDashB">05</h2></div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +124,7 @@
                             <div class="card-header bg-danger font-weight-bolder">Cars</div>
                             <div class="card-body">
                                 <div class="dash-tile-icon"><i class="fas fa-cubes"></i></div>
-                                <div class="dash-tile-text text-right text-black-50"><h2>101</h2></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>05</h2></div>
                             </div>
                         </div>
                     </div>
@@ -123,7 +133,7 @@
                             <div class="card-header bg-danger font-weight-bolder">Rentals</div>
                             <div class="card-body">
                                 <div class="dash-tile-icon"><i class="fas fa-shopping-cart"></i></div>
-                                <div class="dash-tile-text text-right text-black-50"><h2>999</h2></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>03</h2></div>
                             </div>
                         </div>
                     </div>
@@ -132,7 +142,7 @@
                             <div class="card-header bg-danger font-weight-bolder">Drivers</div>
                             <div class="card-body">
                                 <div class="dash-tile-icon" style=""><i class="fas fa-cogs"></i></div>
-                                <div class="dash-tile-text text-right text-black-50"><h2>56</h2></div>
+                                <div class="dash-tile-text text-right text-black-50"><h2>02</h2></div>
                             </div>
                         </div>
                     </div>
@@ -142,10 +152,71 @@
 
     </main>
 
+    <br><br>
+    <!--<div class="col-6">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+            <tr>
+                <th>bookingId</th>
+                <th>regNo</th>
+               &lt;!&ndash; <th>lDate</th>
+                <th>rDate</th>&ndash;&gt;
+                <th>RentalFee</th>
+
+
+            </tr>
+            </thead>
+            <tbody id="tblReports">
+
+            </tbody>
+        </table>
+    </div>-->
+
+    <br>
+
+    <div id="chart"></div>
+
+
 </main>
 
 
 <script src="asserts/js/jquery-3.6.1.min.js"></script>
 <script src="asserts/js/bootstrap.min.js"></script>
+<script>
+
+    let baseUrl="http://localhost:8080/BackEnd_war/";
+    //load all customers from the database
+    getAllBookings();
+
+    //Get all Customer Function
+    function getAllBookings() {
+        $("#tblReports").empty();
+        $.ajax({
+            url: baseUrl+"booking",
+            success: function (res) {
+                for (let r of res.data) {
+                    let bookingID = r.bookingId;
+                    let regNo = r.regNo;
+                    let lDate = r.lDate;
+                    let rDate = r.rDate;
+                    let dailyRate = r.dailyRate;
+
+
+
+                  /*  let row = "<tr><td>" + bookingID + "</td><td>" + regNo + "</td><td>" + dailyRate + "</td></tr>";
+                    $("#tblReports").append(row);*/
+                }
+                // bindRowClickEvents();
+                // setTextFieldValues("", "", "", "","", "", "");
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+
+</script>
 </body>
 </html>

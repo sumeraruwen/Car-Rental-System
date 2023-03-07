@@ -31,7 +31,14 @@ public class BookingController {
             throw new RuntimeException("Already Exists Id");
         }
         repo.save(book);*/
+
         bookingService.saveBooking(dto);
         return new ResponseUtil("ok","Successfully Book",null);
+    }
+
+    @GetMapping
+    public ResponseUtil getAllBookings(){
+
+        return new ResponseUtil("ok","scuccess loaded", bookingService.getAllBookings());
     }
 }

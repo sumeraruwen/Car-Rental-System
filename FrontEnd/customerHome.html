@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Rental System |Customer Home</title>
+    <title>Car Rental System|Home</title>
     <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="SumeraRuwen,sumera,summa,IJSE, GDSE, UX designers,ui , Full-stack ,Frontend , Backend ,HTML,CSS,App Development ,Game Development , Grapic Design ,Marketing Service">
@@ -28,6 +28,11 @@
         #tblIndex td, th{
             border: none;
         }
+
+        body{
+            margin: 0;
+        }
+
 
 
     </style>
@@ -55,45 +60,13 @@
         </nav>
     </section>
 </header>
-<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>-->
 
 
-<main class="container-fluid" id="homeContent">
+
+<main class="container-fluid" id="homeContent" style="
+    padding-left: 0px;
+    padding-right: 0px;
+">
     <section id="Home">
 
     </section>
@@ -202,11 +175,11 @@
     <!-- Cars Section Start-->
     <section id="portfolio">
         <section>
-            <h2>VEHICLES</h2>
+            <h2 id="car">VEHICLES</h2>
         </section>
-        <section>
+        <section id="carSection">
             <br>
-            <div class="col-12">
+            <!--<div class="col-12">
                 <table class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                     <tr>
@@ -222,6 +195,17 @@
 
                     </tbody>
                 </table>
+            </div>-->
+
+            <div >
+
+                <div id="carImg">
+                    <h2 id="model"></h2>
+
+
+                </div>
+
+
             </div>
 
 
@@ -295,7 +279,7 @@
 </footer>
 
 
-<script src="asserts/js/jquery-3.6.1.min.js"></script>
+<script src="asserts/js/jquery-3.6.1.min.js"></script>-
 <script src="asserts/js/bootstrap.min.js"></script>
 <script>
 
@@ -306,41 +290,109 @@
     //Get all Customer Function
     function getAllCars() {
         $("#tblIndex").empty();
+        /* $.ajax({
+             url: baseUrl+"car",
+             success: function (res) {
+                 for (let x of res.data) {
+                     let Model = x.carModel;
+                     let Type = x.carType;
+                     let Fuel = x.fuelType;
+                     let DailyRate = x.dailyRate;
+                     let Image = x.carImageUrl;
+
+                     let carDiv = $("<div style='width: 300px; height: 300px; color: black'>");
+                   let carImage = $("<img src=\"${baseUrl + Image}\" width=\"100px\" height=\"100px\">");
+
+
+
+                     carImage.attr("src",Image);
+
+                     carDiv.append(carImage);
+
+
+                     $("#carImg").append(carDiv);
+
+
+
+
+                   /!*  let row = /!*"<tr><td>" + Model + "</td><td>" + Type + "</td><td>" + Fuel + "</td><td>" + DailyRate + "</td><td>" + Image + "</td></tr>";*!/
+                         `<tr>
+
+
+                         <td>${Model}</td>
+                         <td>${Type}</td>
+                         <td>${Fuel}</td>
+                         <td>${DailyRate}</td>
+
+                         <td><img src="${baseUrl + Image}" width="100px" height="100px"></td>
+
+
+                             </tr>`;
+                     $("#tblIndex").append(row);*!/
+                 }
+                 // bindRowClickEvents();
+                 // setTextFieldValues("", "", "", "","", "", "");
+             },
+             error: function (error) {
+                 let message = JSON.parse(error.responseText).message;
+                 alert(message);
+             }
+         });*/
         $.ajax({
-            url: baseUrl+"car",
+            url: baseUrl + "car",
             success: function (res) {
-                for (let x of res.data) {
-                    let Model = x.carModel;
-                    let Type = x.carType;
-                    let Fuel = x.fuelType;
-                    let DailyRate = x.dailyRate;
-                    let Image = x.carImage;
+                if (res.data) {
+                    for (let x of res.data) {
+                        let Model = x.carModel;
+                        let Type = x.carType;
+                        let Fuel = x.fuelType;
+                        let DailyRate = x.dailyRate;
+                        let Image = x.carImageUrl;
 
+                        /*  let carDiv = $("<div style='width: 350px; height: 400px; background-color: dodgerblue;" +
+                              " gap: 30px; margin-top: 30px; display: flex;  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.40);\n" +
+                              "    background-color: white;\n" +
+                              "    border-radius: 1rem; position: relative'>");
+                          let carImage = $("<img width='350px' height='200px'>");
+                          let heading = $("<h2>");
+                          let para = $("<p>");
 
+                          carImage.attr("src", baseUrl + Image);
 
-                    let row = /*"<tr><td>" + Model + "</td><td>" + Type + "</td><td>" + Fuel + "</td><td>" + DailyRate + "</td><td>" + Image + "</td></tr>";*/
-                        `<tr>
+                          heading.text(Model);
+                          para.text(Type);
 
+                          carDiv.append(carImage,heading,para);
+                          $("#carImg").append(carDiv);*/
 
-                        <td>${Model}</td>
-                        <td>${Type}</td>
-                        <td>${Fuel}</td>
-                        <td>${DailyRate}</td>
+                        const container = document.querySelector('#carImg');
+                        const card = `
+    <div class="card" style="width: 20rem;">
+      <img src="${baseUrl+Image}" class="card-img-top" alt="Car image">
+      <div class="card-body">
+        <h5 class="card-title">${Model}</h5>
+        <p class="card-text">Type: ${Type} <br>Fuel: ${Fuel} <br>Daily Rate: ${DailyRate}</p>
+        <a href="bookingForm.html" class="btn btn-primary">Book Now</a>
+      </div>
+    </div>
+  `;
 
-                        <td><img src="${baseUrl + Image}" width="100px" height="100px"></td>
+                        // Append the card element to the container
+                        container.insertAdjacentHTML('afterbegin', card);
+                        // document.querySelector("#carImg").innerHTML=card;
 
+                        // $("#model").append(carDiv);
 
-                            </tr>`;
-                    $("#tblIndex").append(row);
+                    }
+                } else {
+                    console.log("No car data found");
                 }
-                // bindRowClickEvents();
-                // setTextFieldValues("", "", "", "","", "", "");
             },
-            error: function (error) {
-                let message = JSON.parse(error.responseText).message;
-                alert(message);
-            }
+            error: function (err) {
+                console.log("Error fetching car data:", err);
+            },
         });
+
     }
 
     //Set text fields values function
