@@ -23,6 +23,7 @@
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="customerHome.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="bookingForm.html">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="signin.html">SignOut</a></li>
                    <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Vehicles</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Drivers</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Customers</a></li>-->
@@ -112,7 +113,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Email :</label>
-                                            <input class="form-control" id="txtCusEmail" type="text">
+                                            <input class="form-control" id="txtCusEmail" type="text" name="cusEmail">
                                         </div>
                                     </div>
                                 </div>
@@ -149,13 +150,13 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label class="">RentalFee :</label>
-                                            <input class="form-control" id="txtRentalFee" type="text">
+                                            <input class="form-control" id="txtRentalFee" type="text" name="rentFee">
                                         </div>
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
                                             <label>DrivID :</label>
-                                            <select class="form-control" id="selectDriId"></select>
+                                            <select class="form-control" id="selectDriId" name="dId"></select>
                                             <span class="control-error"></span>
                                         </div>
                                     </div>

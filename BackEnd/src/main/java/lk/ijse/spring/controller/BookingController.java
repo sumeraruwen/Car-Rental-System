@@ -2,8 +2,12 @@ package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.BookingDTO;
 import lk.ijse.spring.entity.Booking;
+import lk.ijse.spring.entity.Car;
+import lk.ijse.spring.entity.Reports;
 import lk.ijse.spring.repo.BookingRepo;
+import lk.ijse.spring.repo.CarRepo;
 import lk.ijse.spring.service.BookingService;
+import lk.ijse.spring.service.CarService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,14 @@ public class BookingController {
 
     @Autowired
     private ModelMapper mapper;*/
+  @Autowired
+  private CarRepo carRepo;
+
+    @Autowired
+    private BookingRepo repo;
+
+    @Autowired
+    private ModelMapper mapper;
 
     @Autowired
     private BookingService bookingService;
@@ -33,6 +45,16 @@ public class BookingController {
         repo.save(book);*/
 
         bookingService.saveBooking(dto);
+
+        Booking booking = mapper.map(dto, Booking.class);
+        repo.save(booking);
+        for (Reports reports : booking.getReportsDetails()){
+            Car car = carRepo.findById(reports.getRegNo()).get();
+            car.setCarColor("Reserverd");
+            carRepo.save(car);
+        }
+
+
         return new ResponseUtil("ok","Successfully Book",null);
     }
 

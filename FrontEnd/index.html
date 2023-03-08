@@ -349,6 +349,7 @@
                         let Fuel = x.fuelType;
                         let DailyRate = x.dailyRate;
                         let Image = x.carImageUrl;
+                        let Availability = x.carColor;
 
                       /*  let carDiv = $("<div style='width: 350px; height: 400px; background-color: dodgerblue;" +
                             " gap: 30px; margin-top: 30px; display: flex;  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.40);\n" +
@@ -372,7 +373,7 @@
       <img src="${baseUrl+Image}" class="card-img-top" alt="Car image">
       <div class="card-body">
         <h5 class="card-title">${Model}</h5>
-        <p class="card-text">Type: ${Type} <br>Fuel: ${Fuel} <br>Daily Rate: ${DailyRate}</p>
+        <p class="card-text">Type: ${Type} <br>Fuel: ${Fuel} <br>Daily Rate: ${DailyRate}<br>Availability: ${Availability} </p>
         <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
